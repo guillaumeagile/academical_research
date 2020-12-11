@@ -6,14 +6,15 @@
 
 # Obervation: the Agile Manifesto
 
-4 principles written in the same form:
+The manifesto exposes 4 values written in the same form:
 &lt;X&gt; over &lt;Y&gt;
-where X is a principle (or set of principles) that comes other Y.
+where X is a value (or set of values) that comes other Y.
 We will focus on X and have no discussion on Y in this paper. 
 
-# First Principle : Individuals and interactions
+# First value : Individuals and interactions
 
-How can the code be a vector between individuals and interactions?
+How can the code be a vector between individuals and interactions? As in a development team. In an agile perspective (or an agile ideal), the developement team, often expressed as 'the team' includes testers, ergonomist, front end developpers, back end dev, data specialist, devOps engineers, technical leaders, architects and so on.
+The aspect of sharing informations with the end users (aka customers) is exposed in the third value.
 
 ## Express Knowledge
 Modelisation: what model is easy to share and interact with?  Which consequences for the code
@@ -34,7 +35,7 @@ Event Storming as a recipe.
 
 ## Interactions in code: it's all about dependencies
 
-# Second Principle : Working software 
+# Second value : Working software 
 
 How can we ensure that the software is working?
 
@@ -51,7 +52,7 @@ How can we ensure that the software is working?
 ## On the feedback loop
 
 
-# Third Principle : Customer collaboration 
+# Third value : Customer collaboration 
 
 What are the elements that the code can provide to improve collaboration with the Customers?
 
@@ -63,7 +64,7 @@ What are the elements that the code can provide to improve collaboration with th
 
 ## Human Readable Verification
 
-# Fourth Principle : Responding to change
+# Fourth value : Responding to change
 
 How can the code help us to facilitate any responses to change?
 
