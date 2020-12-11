@@ -9,15 +9,18 @@
 The manifesto exposes 4 values written in the same form:
 &lt;X&gt; over &lt;Y&gt;
 where X is a value (or set of values) that comes other Y.
+
 We will focus on X and have no discussion on Y in this paper. 
 
 # First value : Individuals and interactions
 
-How can the code be a vector between individuals and interactions? As in a development team. In an agile perspective (or an agile ideal), the developement team, often expressed as 'the team' includes testers, ergonomist, front end developpers, back end dev, data specialist, devOps engineers, technical leaders, architects and so on.
+ In a development team, how can the code be a medium between individuals and ease interactions?
+In an agile perspective (or an agile ideal), the developement team, often mentionned as 'the team', should include: testers, ergonomists, front end developpers, back end devs, data specialists, devOps engineers, technical leaders, architects and so on.
+
 The aspect of sharing informations with the end users (aka customers) is exposed in the third value.
 
 ## Express Knowledge
-Modelisation: what model is easy to share and interact with?  Which consequences for the code
+Modelisation: what model is easy to share and interact with?  Which consequences for the code?
 
 ## Shared Knowledge
 Event Storming as a recipe.
