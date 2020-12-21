@@ -170,7 +170,23 @@ La frugalité étant d'exposer le strict nécessaire; pas la peine de dire: j'ut
 
 Etant donné que le fait de gérer des listes avec des règles métiers contient plus d'intelligence qu'une quelconque liste, il faudra améliorer ce que font les listes standard. En particulier lors de toute tentative de modifier la liste, puisque c'est à ce moment là que rentre en jeu des règles métiers, il faudra que le résultat de cet ajout puisse refléter que une règle métier ait été violée.
 
+Le meilleur design pour obtenir un "feedback" de la part d'une méthode n'est certainement pas de renvoyer des exceptions. Les exceptions cassent la logique du code, et ne sont pas vues par le compilateur. Certains n'hésitent pas à les comparer à des "goto"  (ref here).
+Une fonction devrait toujours retourner une valeur en sortie à celui qui l'a appelé.
+La fonction Add() d'une collection de T (T type des élements contenus par cette collection)  pourrait vous retourner l'objet de type T effectivement ajouté.
+Mais au cas où cet ajout est infaisable (car il casse une règle métier), une monade MayBe&lt;T&gt; (ou Perhaps) sera un type de retour très expressif.
+Peut être que l'objet T sera ajouté à la collection, ou peut être pas. Il est très facile de jouer avec ce type de retour pour ensuite prendre les dispositions qu'il convient.
 
+
+Cette manipulation des entités est à orchester (ou coordonner) dans la partie Service.
+
+Ainsi, il sera bon de se poser la question: pour ajouter un objet  objT de type T avec la fonction Add(objT: T) de l'entité E, qui doit instancier l'objet objT?  Qui fait le new?
+
+Il n'est pas bon de laisser n'importe qui faire les instanciations des objets du domaine.
+
+En général ces objets n'émergent pas de n'importe où.
+
+Soient ils étaient déjà connu par le système (dans une persistance ou dans un service tiers), soient ils sont nouveaux mais vont servier par la suite (et pourront être éventuellement persisté, mais on ne sait pas à priori sous quelle forme)
+Moins on en sait, mieux on se porte.
 
 
 
