@@ -168,7 +168,9 @@ Une interface de style (I)List nous indique que nous pouvons faire varier la tai
 
 La frugalité étant d'exposer le strict nécessaire; pas la peine de dire: j'utilise telle structure de données en interne. Pas la peine non plus d'infliger au monde entier des exceptions si quelque chose se passe mal avec cette structure.
 
-Etant donné que le fait de gérer des listes avec des règles métiers contient plus d'intelligence qu'une quelconque liste, il faudra s'a
+Etant donné que le fait de gérer des listes avec des règles métiers contient plus d'intelligence qu'une quelconque liste, il faudra améliorer ce que font les listes standard. En particulier lors de toute tentative de modifier la liste, puisque c'est à ce moment là que rentre en jeu des règles métiers, il faudra que le résultat de cet ajout puisse refléter que une règle métier ait été violée.
+
+
 
 
 
