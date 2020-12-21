@@ -33,13 +33,13 @@ Et aussi ce posait le problème de la responsabilité attribuée à la base de d
 
 Heureusement les librairies et les frameworks (ouille) nous ont poussé vers d'autres design d'architecture.
 
-Le problème étant: comment faire vivre des objets à coté d'une base de données. Et comment y accèder depuis différentes Interface Homme Machines; ces dernière se multipliant à la faveur du déploiement des internets et de clients (programme client) de plus en plus universels et versatiles (ordis, tablettes, mobiles, interface vocale, objets connectés).
+Le problème étant: comment faire vivre des objets à coté d'une base de données. Et comment y accéder depuis différentes Interface Homme Machines; ces dernière se multipliant à la faveur du déploiement des internets et de clients (programme client) de plus en plus universels et versatiles (ordis, tablettes, mobiles, interface vocale, objets connectés).
 
-Cela a donné ce genre de modélisation, on frait émerger les classes parce qu'il y a des tables dans une base de données et on les affubles de toutes les opérations possibles et imaginables:
+Cela a donné ce genre de modélisation, on fait émerger les classes parce qu'il y a des tables dans une base de données et on les affubles de toutes les opérations possibles et imaginables:
 ![ugly design](uml%20model.png)
 
-On avait envie, par principe DRY (Don't Repeat Yourself) d'avoir des objets omnipotents, qui encapsulent tout, le savoir être(l'état) et le savoir faire (les opérations), uniquement distribué par une vision purment d'objet au sens programatique du terme. Des objets avec des tonnes de méthodes. Et des objets qui se baladeraient (les mêmes) de couche en couche du sytème,  de l'interface graphique à la base de données. 
-Des initiatives ultra-monolithiques telles ques des bases de données orientées objets (je pense à un vieux système français aujourd'hui disparu: O2) ou des frameworks tout en un, type WinDev (encore hélas en vie) ou FoxPro ou Delphi. Ca pouvait fonctionner sur des applis Client Lourd. Mais au prix d'un couplage immense.
+On avait envie, par principe DRY (Don't Repeat Yourself) d'avoir des objets omnipotents, qui encapsulent tout, le savoir être(l'état) et le savoir faire (les opérations), uniquement distribué par une vision purement d'objet au sens programatique du terme. Des objets avec des tonnes de méthodes. Et des objets qui se baladeraient (les mêmes) de couche en couche du système,  de l'interface graphique à la base de données. 
+Des initiatives ultra-monolithiques telles que des bases de données orientées objets (je pense à un vieux système français aujourd'hui disparu: O2) ou des frameworks tout en un, type WinDev (encore hélas en vie) ou FoxPro ou Delphi. Ca pouvait fonctionner sur des applis Client Lourd. Mais au prix d'un couplage immense.
 
 Heureusement les interfaces Web et la multiplicité des solutions de stockage (sans parler des services et de la virtualisation extrême de tout cela) rend impossible de trimbaler des objets aussi lourds et chargés de tant de responsabilité.
 
@@ -66,12 +66,12 @@ Avec derrière tout cela, l'idée qu'une bonne couche de liaison à une base de 
 
 Les ORM (Object-relational Mappers) continuaient de nous laisser croire que la méthode Merise était la bonne et que jamais nous ne nous serions capable de nous délivrer de ce fichu MCD.
 
-Ces objets orientés "données", non contents d'être anémiques en eux même, cachaient des règles métiers dans la couche DAO: il fallait que le l'éxecution du code traverse la partie DAO pour voir apparaitre les contraintes sur les relations, les formats de données, et une partie des règles métiers que l'on savait traduire en ordre SQL: clés uniques, ou pire: triggers.
+Ces objets orientés "données", non contents d'être anémiques en eux même, cachaient des règles métiers dans la couche DAO: il fallait que le l'exécution du code traverse la partie DAO pour voir apparaitre les contraintes sur les relations, les formats de données, et une partie des règles métiers que l'on savait traduire en ordre SQL: clés uniques, ou pire: triggers.
 
 Et d'un autre coté, on codait dans la business layer (et parfois même coté client avec de beaux validateurs 🤢) bien souvent les même règles.
 
 Puis on s'est mis à créer des services. Puisqu'il fallait bien compenser ces objets anémiques sans véritable comportement.
-Et dès qu'on multipliait les services, on multipliait les règles, même si plusieurs services pouvaient finalement modifier la même entité (ou aggregat tant qu'on y est) avec chacun ses propres règles pour ses propres besoins, laissant la persistance finale se débrouiller plus ou moins bien avec des injonctions paradoxales. Bugs en pagaille assurés.
+Et dès qu'on multipliait les services, on multipliait les règles, même si plusieurs services pouvaient finalement modifier la même entité (ou agrégat tant qu'on y est) avec chacun ses propres règles pour ses propres besoins, laissant la persistance finale se débrouiller plus ou moins bien avec des injonctions paradoxales. Bugs en pagaille assurés.
 
 Une fois de plus, la base de données avait le dernier mot. Et les DBA jouaient le rôle d'arbitres entre équipes de devs qui se déchiraient sur la compréhension du besoin du client.
 
@@ -94,12 +94,12 @@ Pas le langage de développement mais le vocabulaire partagé, le nommage des ch
 
 Cette approche appelée "Ubiquitous Language" nous oblige à poser plusieurs choses.
 D'abord séparer les Domaines métiers, car plusieurs se cachent forcément dans tout système d'informations (mot valise que je vais utiliser pour parler d'une App, d'un SaaS, d'un site, d'un prog, bref.... du code en production).
-Ensuite établir des Entités regroupées en Aggrégats afin d'obtenir un Modèle à l'intérieur d'un Domaine Délimité (Bounded Context).
+Ensuite établir des Entités regroupées en Agrégats afin d'obtenir un Modèle à l'intérieur d'un Domaine Délimité (Bounded Context).
 
 Un atelier tel que l'[Event Storming](https://www.eventstorming.com/) ou l'[Event Modeling](https://eventmodeling.org/), nous aide à mieux savoir quoi modéliser (et comment) en partant de zéro et sans connaissance technique particulière (des posts its , des stylos et de grands murs suffisent).
 
-Il y a plusieurs choses qui émergent de ces ateliers: les évenements en premier, les commandes (ou actions en second) et très vite derrière les aggregats et leur "policies".
-Cette distinction entre évènements et aggregats n'est pas anodine. Bien que les évènements aient des effets sur les aggrégats, les aggrégats existent pour eux même. Ils décrivent ce qui reste une fois les évènements passés. Et leur "policies" est leur profession de foi, ce qui est toujours vrai pour eux (et leur entourage proche).
+Il y a plusieurs choses qui émergent de ces ateliers: les évènements en premier, les commandes (ou actions en second) et très vite derrière les agrégats et leur "policies".
+Cette distinction entre évènements et agrégats n'est pas anodine. Bien que les évènements aient des effets sur les agrégats, les agrégats existent pour eux même. Ils décrivent ce qui reste une fois les évènements passés. Et leur "policies" est leur profession de foi, ce qui est toujours vrai pour eux (et leur entourage proche).
 
 > Voila pourquoi la modélisation du Domaine en Entité est déjà riche en "règles métiers", en traitant par ailleurs les évènements.
 
@@ -122,7 +122,7 @@ C'est là que DDD nous éclaire avec les [Value Objects](https://medium.com/swlh
 Je ne vais pas vous expliquer ici toutes les subtilités des Value Objects, mais sachez deux choses;
 les Values Objects sont un élément clé d'un bon design objet (appliquant les principes DDD) car:
 1. ils se basent sur un typage fort (ils remplacent des types primitifs, trop agnostiques)
-2. ils encaspulent des règles métier (de par leur typage) car ils se valident eux-même.
+2. ils encapsulent des règles métier (de par leur typage) car ils se valident eux-mêmes.
 
 Ainsi, avec le temps, les opérations qui prenaient des termes désuets comme "Validation", disparaissent au profit d'une cohésion qui réside dans les propriétés des Entités, au mieux sous forme de Value Objetcs, mais pas que.
 
@@ -130,7 +130,7 @@ C'est un point de vue qui choque pas mal de développeurs et concepteurs objets.
 Ils pensent que des classes d'objets sans opérations sont anémiques.
 C'est faux.
 
-Si vous poussez au bout la logique de chasser les "Primitive Obsessions", vous allez créer des types non primitifs, qui en plus d'avoir un sens métier, révèlent un comportement métier de par leur existance (et donc à leur construction).
+Si vous poussez au bout la logique de chasser les "Primitive Obsessions", vous allez créer des types non primitifs, qui en plus d'avoir un sens métier, révèlent un comportement métier de par leur existence (et donc à leur construction).
 
 Etant donné qu'un Value Object se doit d'être immutable (si une valeur est modifiée, cela devient une nouvelle valeur), la logique (vérification de règles) va donc se loger dans son constructeur, aucune méthode supplémentaire n'est utile.
 
@@ -139,17 +139,17 @@ toutes les règles métiers de l'entité désignée.
 
 
 Une partie logique va aussi venir se loger tout naturellement dans les "Setters", pour les entités mutables.
-Après tout, accèder à une information via un "Set", permet de déclencher toutes les règles métiers au meilleur moment.
+Après tout, accéder à une information via un "Set", permet de déclencher toutes les règles métiers au meilleur moment.
 Avec l'avantage que c'est le compilateur qui va venir brancher sur le code de vérification quand une modification (set) de la propriété est demandée. Systématique, propre, net.
 
 
 Quand il s'agit de manipuler des attributs portant sur autre chose que des Values Objects appartenant à une entité (donc une autre entité), on peut dire que l'on a 2 cas:
-- la propriété n'a pas de mutliplicité; et donc tout se joue dans son setter, c'est là que vont se jouer les règles à vérifier lorsqu'on fait changer l'état de l'objet par cette propriété.
-- la propriété a une mutliplicité (n..m), ce qui va nous conduire à passer par un type d'objet qui finalement n'a rien avoir avec notre domaine: Array, HashMap, Collection, List, Dictionnaire...  you name it!
+- la propriété n'a pas de multiplicité; et donc tout se joue dans son setter, c'est là que vont se jouer les règles à vérifier lorsqu'on fait changer l'état de l'objet par cette propriété.
+- la propriété a une multiplicité (n..m), ce qui va nous conduire à passer par un type d'objet qui finalement n'a rien avoir avec notre domaine: Array, HashMap, Collection, List, Dictionnaire...  you name it!
 
 Ces type objets qui vont contenir la collection (pour employer un terme vague) de l'information dont votre entité à réellement besoin. C'est juste qu'il faut gérer le fait qu'il y en a une multiplicité certaine (et parfois contrainte).
 
-Mais après tout, pourquoi une collection, une liste, un tableau, une hasmap? Pourquoi exposer dans une Modele Domaine ce qui n'est qu'un choix d'implémentation qui convient au développeur à ce moment, et qui surement posera problème au moment de sérialiser (vers une persitence ou un couche graphique)?
+Mais après tout, pourquoi une collection, une liste, un tableau, une hasmap? Pourquoi exposer dans une Modelé Domaine ce qui n'est qu'un choix d'implémentation qui convient au développeur à ce moment, et qui surement posera problème au moment de sérialiser (vers une persistance ou un couche graphique)?
 
 > keeping the aggregates and entities pure and Occam-esque. 
 
@@ -163,7 +163,7 @@ Ou au contraire, peut être que tous les éléments ont été déjà crées, qu'
 Peut être encore que la liste n'est qu'en lecture seule, ce qui ne veut pas dire qu'il est simplement interdit de la remplacer par une autre liste, mais qu'on ne peut modifier aucun des éléments qui la contient.
 
 C'est là que les interfaces de classes nous seront utiles.
-(I)Enumerable/Iterable par exemple, nous renseigne que nous pouvons au moins parcourir la collection d'une manière indépendante de la façon dont elle est représentée en mémoire (la capacité d'énumeration est commune à toutes les structures qui accumulent des objets).
+(I)Enumerable/Iterable par exemple, nous renseigne que nous pouvons au moins parcourir la collection d'une manière indépendante de la façon dont elle est représentée en mémoire (la capacité d'énumération est commune à toutes les structures qui accumulent des objets).
 Une interface de style (I)List nous indique que nous pouvons faire varier la taille de la liste.
 
 La frugalité étant d'exposer le strict nécessaire; pas la peine de dire: j'utilise telle structure de données en interne. Pas la peine non plus d'infliger au monde entier des exceptions si quelque chose se passe mal avec cette structure.
@@ -197,7 +197,7 @@ Mais ces fonctions ne font que modifier l'état interne de l'objet Cart.
 La question est "quelle part du business" doit se retrouver implémentée dans la face concrète du Domain Model ?
 
 
-# Un mot sur la persistence et les ORM
+# Un mot sur la persistance et les ORM
 Si les ORM sont la solution la plus efficace pour les "zones" de votre système où le CRUD fait loi, il n'en est pas de même pour les View Model de DDD.
 Déjà, comme vous pouvez le lire un peut partout, CQRS est une approche quia un coût de développement non négligeable.
 Là où le CRUD se suffit, n'allez pas faire du CQRS/ES.
