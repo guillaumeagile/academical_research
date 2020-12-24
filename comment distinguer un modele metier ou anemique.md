@@ -77,6 +77,15 @@ Une fois de plus, la base de données avait le dernier mot. Et les DBA jouaient 
 
 C'est du vécu!
 
+## Un peu de code...
+
+Un petit Kata exemple:  Tell Don't Ask avec le TyrePressure Monitor ou le CpuMonitor
+la règle remonte non pas dans le service mais dans la classe moniteur qui est utilisée par le service, afin que cette dernière 'affirme' (tell) la règle au lieu que ce soit le service qui demande (ask) des valeurs internes au moniteur. La logique (fonction) qui a besoin d'une donnée doit se trouver dans la même classe que cette donnée.
+
+Le résultat est [ici](https://github.com/guillaumeagile/seed-TS-promises/tree/7059a8d93a249a1260fa06da25429828413de994).
+
+
+
 # Puis vint DDD
 
 Comment éviter un domaine objet anémique sans retourner aux erreurs du modèle objet old school ?
@@ -87,6 +96,21 @@ C'est à la lecture de [cet article](https://blog.pragmatists.com/domain-driven-
 L'idée étant de pouvoir décrire un modèle affranchi des contraintes qui ne sont pas les siennes.
 Se sauvegarder dans une base de données untel ou s'afficher à l'utilisateur sur un interface Z (il y a des milliers de frameworks pour faire le beau sur le Web[^2])) ne concerne en rien, absolument en rien le Modèle du Domaine d'une App ou d'un SI.
 
+------------------------
+
+
+# Previously (TL;DR)
+
+Ne pas vouloir faire des objets anémiques, et respecter le Tell Don't Ask, c'est bien.
+Remettre toutes les logiques dans des classes obèses, c'est mal.
+
+![tell dont ask schema](https://martinfowler.com/bliki/images/tellDontAsk/sketch.png)
+
+Toute la logique dans les objets? Non.
+
+Une approche qui nous invite à réflechir en détail à cela se nomme: Domain Driven Design.
+
+# DDD à la rescousse (2e partie)
 La motivation d'Eric Evans, avec son livre [Domain Driven Design](https://www.dddcommunity.org/books/), n'était pas tant de parler architecture logiciellle mais de représentation.
 Plutôt que le mot objet/classe, il choisit le mot entité.
 Et le plus important des principes qu'il a voulu mettre en avant est celui du langage parlé.
@@ -133,10 +157,29 @@ C'est faux.
 Si vous poussez au bout la logique de chasser les "Primitive Obsessions", vous allez créer des types non primitifs, qui en plus d'avoir un sens métier, révèlent un comportement métier de par leur existence (et donc à leur construction).
 
 Etant donné qu'un Value Object se doit d'être immutable (si une valeur est modifiée, cela devient une nouvelle valeur), la logique (vérification de règles) va donc se loger dans son constructeur, aucune méthode supplémentaire n'est utile.
+A lire: [to mutate or not](https://www.schibsted.pl/blog/immutability-entities-and-value-objects/) .
 
 De l'extérieur cela pourrait ressembler à un objet anémique. A l'intérieur, c'est bien lui qui tient 
 toutes les règles métiers de l'entité désignée.
 
+
+
+## Un peu de code...
+
+Un petit Kata exemple:  Tell Don't Ask avec le TyrePressure Monitor ou le CpuMonitor
+On a réussi une premier refacto : la règle de vérification de surchauffe remonte non pas dans le service mais dans le moniteur, mais on passe par une méthode.
+
+Il est facile de refactorer cette méthode en propriété, pour désigner un état.
+
+Mais pour ajouter la  règle suivante, comment faire?
+> une température ne devrait pas être en dessous du minimum absolu (-273.15°C) et que l'on pouvait choisir l'unité de temperature et que la conversion devait se faire.
+
+Il suffit pour cela de chercher les Primitives Obsessions.
+
+
+
+
+## Et pour les entités alors?
 
 Une partie logique va aussi venir se loger tout naturellement dans les "Setters", pour les entités mutables.
 Après tout, accéder à une information via un "Set", permet de déclencher toutes les règles métiers au meilleur moment.
@@ -213,6 +256,7 @@ Mais ces fonctions ne font que modifier l'état interne de l'objet Cart.
 
 
 La question est "quelle part du business" doit se retrouver implémentée dans la face concrète du Domain Model ?
+
 
 
 # Un mot sur la persistance et les ORM
