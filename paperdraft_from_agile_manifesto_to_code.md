@@ -19,25 +19,50 @@ In an agile perspective (or an agile ideal), the developement team, often mentio
 
 The aspect of sharing informations with the end users (aka customers) is exposed in the third value.
 
-## Express Knowledge
+##  Interaction between the build team and the stakeholders
 Modelisation: what model is easy to share and interact with?  Which consequences for the code?
 
-## Shared Knowledge
-Event Storming as a recipe.
+### Breaking the monolith of design & conception phase
+Traditional software project management guidelines (Waterfall, RUP) tend to avoid live interactions between the various actors of a project: from user to late end validators and receiptors, only a heavy and cheesy documentation was allowed. And all things must be expressed as a whole, a monolith; rarely in terms of increment.
+Agile methodologies arrived to change this. But how the design and conception phased is durably impacted?
 
-## ATDD and BDD
+While going to discover the product backlog and its refinement through user stories, the need of design & conception process was still on the urge.
 
-## Code Reviews
+While some XP (eXtreme Programming) supporters said that one has just to code the solution (which is quite acceptable if you have the end user or the skateholders fully involved in the whole construction of the software), the vast majority still needs to express intermediates between User Stories and the code.
 
-## Sprint Review
+Thus, Agile practices encourage more human readable, and interactions prone, artefacts such as:
+ - Express User Stories in a form using BDD / Gherkin / Cucumber 
+ - Acceptance (Tests) Driven Development
+ - Executable Specification
+
+But also C4 Models (to move accross high level use case, architectural views, and code implementations) and traditionnal UML diagramms are still good candidates to encourage intense discussion with the stakeholders and the builder of the project/product.
 
 
-## Decision Records
+### the importance of Ubiquitous Languge
 
-## Using Maps
+
+
+### Event Storming as a way to extended interaction & collaboration throughout the design phase
+
+
+### Using Maps ?
+
+
+
+##  Interaction inside the build team 
+
+### Code Reviews and metrics
+
+### Sprint Review and metrics
+
+
+### Decision Records
+
 
 ## Interactions in code: it's all about dependencies
 
+
+---------------------
 # Second value : Working software 
 
 How can we ensure that the software is working?
@@ -54,19 +79,36 @@ How can we ensure that the software is working?
 
 ## On the feedback loop
 
-
+---------------
 # Third value : Customer collaboration 
 
 What are the elements that the code can provide to improve collaboration with the Customers?
 
+
+
 ## Toward an Ubiquitous Language
 
-## Human Readable code
+## ATDD and BDD
+Another form of collaboration is to involve the End Users and the Domain Experts in the inception of verification.
+
+"What comes out in production is what the developers have understood"
 
 ## Domain Modeling
 
+As seen in chapter of "Event Storming", what comes right next after a Workshop where ideas emerge, is to catpure the shared knowledge into a tangible and applicable model.
+On can be attached to UML modeling while others prefer putting it down directly to code.
+There's many tools that handle reverse direction mapping between code and a model like UML
+In fact, there's is no reason that code and model should be seperated. They hold the same information.
+As duplicating information is an absolute anti pattern, one should choose wich should master and be the reference for the design: either the UML representation, or the code.
+
+Benefit of the code: it is compiled easily and quickly, thus verified again 
+
+
 ## Human Readable Verification
 
+## Human Readable code
+
+--------------
 # Fourth value : Responding to change
 
 How can the code help us to facilitate any responses to change?
@@ -80,6 +122,9 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 ## Verifications enabling changes
 
 ## Insurances that changes are not breaking
+
+
+
 
 ## Evolutions in code
 When changes are evolution, how to cope with it?

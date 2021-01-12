@@ -84,7 +84,7 @@ la règle remonte non pas dans le service mais dans la classe moniteur qui est u
 
 Le résultat est [ici](https://github.com/guillaumeagile/seed-TS-promises/tree/7059a8d93a249a1260fa06da25429828413de994).
 
-
+> Things that change together should be together. (Fowler)
 
 # Puis vint DDD
 
@@ -96,21 +96,9 @@ C'est à la lecture de [cet article](https://blog.pragmatists.com/domain-driven-
 L'idée étant de pouvoir décrire un modèle affranchi des contraintes qui ne sont pas les siennes.
 Se sauvegarder dans une base de données untel ou s'afficher à l'utilisateur sur un interface Z (il y a des milliers de frameworks pour faire le beau sur le Web[^2])) ne concerne en rien, absolument en rien le Modèle du Domaine d'une App ou d'un SI.
 
-------------------------
 
+# DDD à la rescousse 
 
-# Previously (TL;DR)
-
-Ne pas vouloir faire des objets anémiques, et respecter le Tell Don't Ask, c'est bien.
-Remettre toutes les logiques dans des classes obèses, c'est mal.
-
-![tell dont ask schema](https://martinfowler.com/bliki/images/tellDontAsk/sketch.png)
-
-Toute la logique dans les objets? Non.
-
-Une approche qui nous invite à réflechir en détail à cela se nomme: Domain Driven Design.
-
-# DDD à la rescousse (2e partie)
 La motivation d'Eric Evans, avec son livre [Domain Driven Design](https://www.dddcommunity.org/books/), n'était pas tant de parler architecture logiciellle mais de représentation.
 Plutôt que le mot objet/classe, il choisit le mot entité.
 Et le plus important des principes qu'il a voulu mettre en avant est celui du langage parlé.
@@ -125,7 +113,7 @@ Un atelier tel que l'[Event Storming](https://www.eventstorming.com/) ou l'[Even
 Il y a plusieurs choses qui émergent de ces ateliers: les évènements en premier, les commandes (ou actions en second) et très vite derrière les agrégats et leur "policies".
 Cette distinction entre évènements et agrégats n'est pas anodine. Bien que les évènements aient des effets sur les agrégats, les agrégats existent pour eux même. Ils décrivent ce qui reste une fois les évènements passés. Et leur "policies" est leur profession de foi, ce qui est toujours vrai pour eux (et leur entourage proche).
 
-> Voila pourquoi la modélisation du Domaine en Entité est déjà riche en "règles métiers", en traitant par ailleurs les évènements.
+> Voila pourquoi la modélisation du Domaine en Agrégats (Entités + Value Objects) va nous enrichir en "règles métiers", tout en traitant par ailleurs les évènements.
 
 (Pour en savoir plus sur l'Event Storming il y a foule d'articles et bien sûr de publications à ce sujet, mais peu en [français](https://cleandojo.com/2019/06/event-storming-modelisez-votre-domaine-metier-en-equipe/).)
 
@@ -135,14 +123,38 @@ Ce n'est pas sans risque. On peut avec un certains nombres d'outils, remonter le
 
 Le Domain Model survit après les évènements; c'est lui que l'on présente (sous une forme adaptée, dite View Model ou [Read Model](http://gorodinski.com/blog/2012/04/25/read-models-as-a-tactical-pattern-in-domain-driven-design-ddd/) à l'utilisateur final, lequel se moque pas mal des journaux de logs. Les éléments du modèle montrent l'état (partiel) du monde (tel que manipulé dans un contexte donné) et sa cohésion.
 
+Mais, j'aurai le plaisir de vous parler des évènements dans une autre article.
+
+Et d'aller plus loin dans la modélisation objet d'un domaine dans la suite de cet article.
+
+
+
+
+
+------------------------
+
+
+
+
+# Previously (TL;DR)
+
+Ne pas vouloir faire des objets anémiques, et respecter le Tell Don't Ask, c'est bien.
+Remettre toutes les logiques dans des classes obèses, c'est mal.
+
+![tell dont ask schema](https://martinfowler.com/bliki/images/tellDontAsk/sketch.png)
+
+Toute la logique dans les objets? Non. Martin Fowler en parle un peu dans son article d'ailleurs.
+Il existe une approche qui nous invite à y réflechir en détail, elle se nomme: Domain Driven Design.
+
 # Modéliser un Domaine avec sa cohérence
 
 Pour assurer la cohésion du modèle, on va donc parler de règles. Règles métier. Mais se cachent beaucoup de choses derrière ce terme.
-La règle c'est quelque chose qui doit pouvoir se vérifier. C'est ce qui doit toujours être vrai; sinon ce n'est plus une règle.
+Pourtant, la règle c'est quelque chose qui doit pouvoir se vérifier. C'est ce qui doit toujours être vrai; sinon ce n'est plus une règle.
 
 Comment placer ces règles dans le Modèle de Domaine, sans surcharger les objets de méthodes, car en réalité un modèle s'explore bien par ses attributs, rarement par ses opérations.
 
-C'est là que DDD nous éclaire avec les [Value Objects](https://medium.com/swlh/value-objects-to-the-rescue-28c563ad97c6).
+C'est là que DDD nous offre quelque chose de plus puissant que des méthodes calées sur des objets:  les [Value Objects](https://medium.com/swlh/value-objects-to-the-rescue-28c563ad97c6).
+
 Je ne vais pas vous expliquer ici toutes les subtilités des Value Objects, mais sachez deux choses;
 les Values Objects sont un élément clé d'un bon design objet (appliquant les principes DDD) car:
 1. ils se basent sur un typage fort (ils remplacent des types primitifs, trop agnostiques)
@@ -154,29 +166,46 @@ C'est un point de vue qui choque pas mal de développeurs et concepteurs objets.
 Ils pensent que des classes d'objets sans opérations sont anémiques.
 C'est faux.
 
+
+> Another good warning sign of trouble is (...) a class that has only fields and accessors. That's almost always a sign of trouble because it's devoid of behavior.  [M. Fowler](https://martinfowler.com/bliki/GetterEradicator.html)
+ 
+Ce n'est pas vrai. Enfin pas tout à fait. Il faut être plus malin que ca.
+
+>Look for who uses the data and try to see if some of this behavior can be moved into the object.  [M. Fowler](https://martinfowler.com/bliki/GetterEradicator.html)
+
+Une classe qui n'a que des Settes et Getters, n'est peut être pas dépourvue de logique; il faut aller regarder le code des propriétés, c'est aussi un bon endroit pour ranger de la logique métier propre aux Entités.
+
 Si vous poussez au bout la logique de chasser les "Primitive Obsessions", vous allez créer des types non primitifs, qui en plus d'avoir un sens métier, révèlent un comportement métier de par leur existence (et donc à leur construction).
 
 Etant donné qu'un Value Object se doit d'être immutable (si une valeur est modifiée, cela devient une nouvelle valeur), la logique (vérification de règles) va donc se loger dans son constructeur, aucune méthode supplémentaire n'est utile.
 A lire: [to mutate or not](https://www.schibsted.pl/blog/immutability-entities-and-value-objects/) .
 
-De l'extérieur cela pourrait ressembler à un objet anémique. A l'intérieur, c'est bien lui qui tient 
-toutes les règles métiers de l'entité désignée.
+De l'extérieur cela pourrait ressembler à un objet anémique. A l'intérieur, c'est bien lui qui tient toutes les règles métiers de l'entité désignée.
 
+>A good rule of thumb is that things that change together should be together.
 
 
 ## Un peu de code...
 
-Un petit Kata exemple:  Tell Don't Ask avec le TyrePressure Monitor ou le CpuMonitor
-On a réussi une premier refacto : la règle de vérification de surchauffe remonte non pas dans le service mais dans le moniteur, mais on passe par une méthode.
+Je reprends mon petit Kata de m'article précédent: [implémenter Tell Don't Ask en TDD avec un TyrePressure Monitor ou un CpuMonitor](https://github.com/guillaumeagile/seed-TS-promises/tree/7059a8d93a249a1260fa06da25429828413de994).
+Dans mon code, j'ai réussi une premier refacto : la règle de vérification de surchauffe remonte non pas dans le service mais dans le moniteur, mais on doit appeler  une méthode 'hasAlert' pour savoir ce qu'il se passe.
 
 Il est facile de refactorer cette méthode en propriété, pour désigner un état.
+Un état qui serait partie intégrante du Modèle, plutôt qu'une méthode.
 
 Mais pour ajouter la  règle suivante, comment faire?
-> une température ne devrait pas être en dessous du minimum absolu (-273.15°C) et que l'on pouvait choisir l'unité de temperature et que la conversion devait se faire.
+> une température ne devrait pas être en dessous du minimum absolu (-273.15°C) et l'on pourrait choisir l'unité de temperature (Celcius ou Kelvin) et la conversion devrait se faire.
 
 Il suffit pour cela de chercher les Primitives Obsessions.
+Une valeur de temperature n'est pas un entier ou un number, mais un type à part entière. C'est une Temperature.
+Les règles métiers sont dans son constructeur mais aussi dans la surcharges des opérateurs : equalTo, greaterThan, lowerThan, hashCode et + (add).
+J'ai voulu le coder en typeScript mais je me suis fais avoir par la limitation de ce langage: je ne peux pas surcharger les operateurs standards, à part 'valueOf'.
+Tant pis, j'ai quand même pu capturer l'idée dans des méthodes. Un langage propre m'aurait permis de masquer ces méthodes en surchargeant les opérateurs courants ( == , < , > , + ).
 
+[Vous pouvez voir mon repo ici](https://github.com/guillaumeagile/seed-TS-promises/tree/cpuMonitorKata) .
 
+Bon, heureusement il y a d'autres langages de programmation plus sympatoches, et je ne citerai ici que C# (oui c'est orienté 😅) qui dans ses dernières versions nous offre encore plus de facilités avec ses "Records" immutable par nature (rattrapant un retard qui avait été pris sur les "mordernes" langages fonctionnels à la mode aujourd'hui)
+[Les Records de C# pour vos Objets Valeurs](https://enterprisecraftsmanship.com/posts/csharp-records-value-objects/)
 
 
 ## Et pour les entités alors?
@@ -185,35 +214,58 @@ Une partie logique va aussi venir se loger tout naturellement dans les "Setters"
 Après tout, accéder à une information via un "Set", permet de déclencher toutes les règles métiers au meilleur moment.
 Avec l'avantage que c'est le compilateur qui va venir brancher sur le code de vérification quand une modification (set) de la propriété est demandée. Systématique, propre, net.
 
+Mais attention.
 
 Quand il s'agit de manipuler des attributs portant sur autre chose que des Values Objects appartenant à une entité (donc une autre entité), on peut dire que l'on a 2 cas:
-- la propriété n'a pas de multiplicité; et donc tout se joue dans son setter, c'est là que vont se jouer les règles à vérifier lorsqu'on fait changer l'état de l'objet par cette propriété.
-- la propriété a une multiplicité (n..m), ce qui va nous conduire à passer par un type d'objet qui finalement n'a rien avoir avec notre domaine: Array, HashMap, Collection, List, Dictionnaire...  you name it!
+- la propriété n'a pas de multiplicité; dans son Setter peuvent se jouer les règles à vérifier lorsqu'on fait changer l'état de l'objet à travers cette propriété.
+- la propriété a une multiplicité (n..m), ce qui va nous obliger à exporer un type d'objet qui finalement n'a rien avoir avec notre domaine: Array, HashMap, Collection, List, Dictionnaire...  you name it!
 
-Ces type objets qui vont contenir la collection (pour employer un terme vague) de l'information dont votre entité à réellement besoin. C'est juste qu'il faut gérer le fait qu'il y en a une multiplicité certaine (et parfois contrainte).
+Même si ces types sont génériques, qui vont nous permettre de finalement accèder à la sous entité qui a du sens pour notre domaine, ils exposent un certain fonctionnement (table, queue, collection, liste chainée, associations) qui n'est peut être pas exactement ce que le métier nous dicte.
 
-Mais après tout, pourquoi une collection, une liste, un tableau, une hasmap? Pourquoi exposer dans une Modelé Domaine ce qui n'est qu'un choix d'implémentation qui convient au développeur à ce moment, et qui surement posera problème au moment de sérialiser (vers une persistance ou un couche graphique)?
+Par exemple: ces types vont juste exprimer la collection (pour employer un terme vague) de l'information dont votre entité à réellement besoin. Mais comment gérer le fait qu'il y en a une multiplicité particulière (et parfois contrainte)? Ou une condition de non répétition d'un élément dans la liste (unicité)? ou autre?
+
+Et après tout, pourquoi une collection, une liste, un tableau, une hasmap? Pourquoi exposer dans une Modelé Domaine ce qui n'est qu'un choix d'implémentation qui convient au développeur à ce moment, et qui surement posera problème au moment de sérialiser (vers une persistance ou un couche graphique)?
+
+https://deviq.com/exposing-collection-properties/
+
+
+## Moving towards intention-revealing interfaces
 
 > keeping the aggregates and entities pure and Occam-esque. 
 
-Ne serait il pas judicieux d'exposer juste des capacités.
+Ne serait il pas judicieux d'exposer juste des capacités?
 L'important est de savoir ce que l'on peut faire (et ne pas faire) avec les propriétés d'une entité.
 Si cette propriété est unique, parfait, son type nous dit ce qu'elle doit être.
 Si elle affiche une multiplicité, il est important de savoir ce que on peut en faire:
-l'énumérer, la parcourir de façon indexée peut être, la modifier? Mais comment?
+l'énumérer, la parcourir de façon indexée peut être, la modifier? Mais comment? Sous quelles conditions?
+
 Peut-être que le métier veut que l'on ne peut qu'ajouter des éléments, pas les supprimer?
-Ou au contraire, peut être que tous les éléments ont été déjà crées, qu'on ne peut pas y toucher, juste tout effacer?
+Ou au contraire, peut être que tous les éléments ont été déjà crées initialement, qu'on ne peut pas y toucher, juste tout effacer d'un coup?
 Peut être encore que la liste n'est qu'en lecture seule, ce qui ne veut pas dire qu'il est simplement interdit de la remplacer par une autre liste, mais qu'on ne peut modifier aucun des éléments qui la contient.
 
+Tant de possibilités!
 C'est là que les interfaces de classes nous seront utiles.
-(I)Enumerable/Iterable par exemple, nous renseigne que nous pouvons au moins parcourir la collection d'une manière indépendante de la façon dont elle est représentée en mémoire (la capacité d'énumération est commune à toutes les structures qui accumulent des objets).
-Une interface de style (I)List nous indique que nous pouvons faire varier la taille de la liste.
+
+> [Cook]  definition is clearly based on established object-oriented principles: “maintain encapsulation” and “code to an interface, not an implementation” . 
+Joseph Junkler on [Abstract Data Types and Objects](https://medium.com/@jnkrtech/abstract-data-types-and-objects-17828bd4abdc), quoting [Willian Cook](https://www.cs.utexas.edu/~wcook/Drafts/2009/essay.pdf).
+
+(I)Enumerable/Iterable par exemple, nous informe que nous pouvons parcourir la collection d'une manière indépendante de la façon dont elle est représentée en mémoire (la capacité d'énumération est commune à toutes les structures qui accumulent des objets).
+
+Alors qu'avec une interface de style (I)List nous indique que nous pouvons faire varier la taille de la liste.
+
+La beauté des interfaces est qu'on peut en hériter d'autant que nécessaire, mais seulement du nombre suffisant pour satisfaire nos exigences métier.
+C'est là que le principe [Interface Segration](https://blog.ndepend.com/solid-design-the-interface-segregation-principle-isp/) rentre en jeu.
+La séparation entre IList et IEnumerable (en .Net) résulte bien de ISP
 
 La frugalité étant d'exposer le strict nécessaire; pas la peine de dire: j'utilise telle structure de données en interne. Pas la peine non plus d'infliger au monde entier des exceptions si quelque chose se passe mal avec cette structure.
 
-Etant donné que le fait de gérer des listes avec des règles métiers contient plus d'intelligence qu'une quelconque liste, il faudra améliorer ce que font les listes standard. En particulier lors de toute tentative de modifier la liste, puisque c'est à ce moment là que rentre en jeu des règles métiers, il faudra que le résultat de cet ajout puisse refléter que une règle métier ait été violée.
+Le fait de gérer des listes avec des règles métiers contient plus d'intelligence qu'une quelconque implémentation de liste fournie par n'importe quel language et son framework associé. Il nous faudra améliorer ce que font les listes standards.
+ En particulier lors de toute tentative de modifier la liste, puisque c'est à ce moment là que rentre en jeu des règles métiers, il faudra que le résultat de cet ajout puisse refléter que une règle métier ait été violée.
 
-Le meilleur design pour obtenir un "feedback" de la part d'une méthode n'est certainement pas de renvoyer des exceptions. Les exceptions cassent la logique du code, et ne sont pas vues par le compilateur. Certains n'hésitent pas à les comparer à des "goto"  (ref here).
+C'est pourquoi j'encourage dans le cadre d'un modèle DDD à développer des Interfaces génériques explicites, du style (I)ListeSansDoublonsNonModifiable  ou (I)ListBornée.
+Oui, j'utilise la langue française quand mon appli est developpée par des francophones uniquement 😊.
+
+Le meilleur design pour obtenir un "feedback" de la part d'une méthode n'est certainement pas de renvoyer des exceptions. Les exceptions cassent la logique du code, et ne sont pas vues par le compilateur. Certains n'hésitent pas à les comparer à des "goto"  (*TODO ref here*).
 Une fonction devrait toujours retourner une valeur en sortie à celui qui l'a appelé.
 La fonction Add() d'une collection de T (T type des élements contenus par cette collection)  pourrait vous retourner l'objet de type T effectivement ajouté.
 Mais au cas où cet ajout est infaisable (car il casse une règle métier), une monade MayBe&lt;T&gt; (ou Perhaps) sera un type de retour très expressif.
@@ -244,19 +296,33 @@ L'autre pour supprimer un CartProduct à la collection dans Cart. Et une derniè
 Mais ces fonctions ne font que modifier l'état interne de l'objet Cart.
 
 
-! Un exemple de code:
-
-
-
-
 
 
 
 > aggregates should reference other aggregates using only the identity instead of direct association
 
 
-La question est "quelle part du business" doit se retrouver implémentée dans la face concrète du Domain Model ?
+# 2 grosses questions en suspens
 
+>"Alors, quoi, toutes les règles de validation dans le domaine, ca ne pose pas problème?"
+
+A moi non, et je ne suis pas le seul. Je vous renvoie à un tout récent article que j'ai lu alors que j'étais en train de finir le présent article (je vous jure!)...(ne jurez pas Marie Thérèse!)...(référence cinématographique 😄)
+[Always-Valid Domain Model](https://enterprisecraftsmanship.com/posts/always-valid-domain-model/?__s=pe49kel8e59wl0x323nu) or not?
+
+>Deuxio "quelle part du business" doit se retrouver implémentée dans la face concrète du Domain Model ?
+Qui répond un peu à la première: ce qui n'est pas invariant dans le modèle de domaine n'a bien sûr rien à faire dans celui ci.
+C'est alors que les vérifications dépendantes du contexte peuvent aller dans la partie "Thin Service/Application Logic" ou peut être dans une partie de votre architecture totalement orientée "Feature" et non Modèle.
+
+Mais j'ai eu aussi à coder des dérivations d'un modèle, des dérivées locales (au sens, par pays, par culture, par localisation du contexte) et pour cela il m'a fallu "étendre" ou "encapsuler" les entités de domaines dans d'autres classes et laisser un astucieux mécanisme choisir de charger l'extension locale d'un modèle à la run-time.
+Bien sûr chaque extension à son jeu de règles, qui est écrit en TDD et donc testé entièrement.
+Comme ce modèle dérivé est compatible en type avec le modèle de base, alors il est persistable ou utilisable par tout port/adapter qui s'adosse au modèle général.
+
+
+## Validation ou Invariants?
+
+
+## Que faire des stacks front end
+et de leur validation facile à coder?
 
 
 # Un mot sur la persistance et les ORM
