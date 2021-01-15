@@ -77,22 +77,35 @@ We're talking about unit tests of course, those close to the code.
 It is the exact location where we can verify that the Ubiquituous appears in the naming of classes, properties and method.
 It is where we can judge of the quality of code, the way it has to be used;it reveals any flaws in the object design and the domain rules and their cohesion.
 
-As tests are the first real user of the code, they act a concret, verifiable interaction whith the code.
+As tests act as the first real user of the code, they prove a concrete, verifiable interaction whith it.
+And they are error prone. Because on one hand they compile (static type verification), then they pass! (they have to).
+
 Although those tests are code themselves, they are written by a human being.
 One can think that tests are only written by developpers, but not only.
-With the now widely use of Agile practices such as User Stories, Story Mapping, Impact Mapping, non technicians are writting acceptance test, or behavior expectations.
-Those expectations can lead directly to code through Excecutable Specification.
-They are to be written in a human readable language, such as (in English, but translatable to any dialect): Given / When / Then.
-Then we can associate (map) some code behind the natural language, through the use of Regular Expressions.
+With the now acclaimed use of Agile practices such as User Stories, Story Mapping [^2], Impact Mapping and so on, non technicians are able to write acceptance tests, or behavior expectations.
+Those expectations can lead directly to code through Excecutable Specifications.
+They are to be written in a human readable language, in a specific form using these keywords at the beginning of each sentences (in English, but translatable to any dialect): Given / When / Then.
+Then we associate (map) some code behind the natural language, through the use of Regular Expressions.
 Many test libraries allow to do that and target unit test code written in Java, C#, TypeScript, Java Script, PHP, Ruby, etc.
-The top library acheiving this is Cucumber and there are many tools and test runtimes to make it work in any CI/CD pipeline. [^1]
+The top library acheiving this is Cucumber and there are many tools and test runtimes to make it work in any CI/CD pipeline [^1]. One can also use the Fitness framework.
 
+The observable result is that tests are now reflecting code, or at least the Domain Model in the same form that it is expressed in code: events, aggregates, even class names or abstraction names are trully and durably in the code.
+And they are covariants. Always synchronised; otherwise the code cannot compile and the tests cannot pass.
 
 Further more, when we mention unit testing, or technical tests, it expresses what developpers have understood about the domain and its subtleness.
 
+With those processes (tests and code together written as a base to interact between stakeholders), we are acheiving one most precious thing in the art of software development: a *Single Source of Trust*.
+
+And a way to talk between technicians and non technicians about the expected behavior of what is to be delivered.
 
 ### Code Reviews and metrics
 
+Individuals (the coders) havre also they own channel to discuss.
+We're not going to talk about tools. As they still are many and other studies exist to discuss their usage.
+
+The coders are in perpetual interaction each other when they write, read and fix code.
+Source code, as I said, is a vector.
+A vector of shared knowledge, but also intentions.
 
 
 ### Sprint Review and metrics
@@ -177,6 +190,9 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 Explain here the connanscence problema.
 https://www.maibornwolff.de/en/blog/connascence-rules-good-software-design
 
+In the common sense, connascence is the act of growing together.
+In the code, it is the relationship between two or more elements (packages, components, classes or functions) in which changing one necessitates changing the others in order to maintain overall correctness.
+
 + illustration
 
 
@@ -201,3 +217,4 @@ When changes are evolution, how to cope with it?
 #References
 
 [^1]: https://cucumber.io/docs/tools/related-tools/
+[^2]: https://www.nilslesieur.fr/2020/12/impact-mapping/
