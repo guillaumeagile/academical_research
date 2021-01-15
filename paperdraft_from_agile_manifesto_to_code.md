@@ -40,18 +40,60 @@ But also C4 Models (to move accross high level use case, architectural views, an
 
 ### the importance of Ubiquitous Languge
 
+While a lot of practices, tools, recipes exists to emphase communication between people in an agile IT environment, one major drawback is still human language.
+The need of an Ubiquitous, shared langugage is absolutly vital between end users, business experts and people involved in the production of the software deliveries.
+Because what is delivered is what the software engineers did have understood.
+And most of all, what is delivered is the result of code source, being compiled and distributed, even on premises or on a cloud infrastructure.
 
+Classical Agile methodologies often end on the side of project management and requirement gathering (with the final aim of writing user stories). But there's a lack of considerations about the code, which still remains an obscure face of the long process of building software.
 
-### Event Storming as a way to extended interaction & collaboration throughout the design phase
+One must look for guidelines and practices beyond the Agile Manifesto, hence use mostly common sense, or less known guidances such as Domain Driven Development, coined and developped by Eric Evans
 
-
-### Using Maps ?
-
+Ubiquitous Language is modeled within a Limited context (so called bounded), where the terms and concepts of the business domain are identified, and there should be no ambiguity.
 
 
 ##  Interaction inside the build team 
 
+Individuals and interactions are of course adressed in the Third value : Customer collaboration.
+But what remains to explore are interactions whithin the development team.
+Agility comes with a lot of innovations in terms of having people working together more seamlessly and fluently.
+How can this translate when it comes to code?
+
+Code (source code) is not only what will be compiled and produces an executable asset;
+Code has became more and more expressive, fluent. Through the evolution of programing language (think about how an assembly code looks like, it's barely unreadable for a human being) in one hand, and the rise of better libraries, framework and practices.
+Let's dive into more details:
+
+### Code Readabilty
+The ability of reading fluently a source code come from multiple factors:
+- speak the Ubiquitous Language of the bussiness and the clients : as said before it's a consequence of empowering interactions between stakeholders.
+- follow a design/conception that is close to the business needs: applying the recommandations of DDD, and name everything upon the Ubiquitous Language.
+
+
+### Test understandably is at least as important as code
+On the way to share knowledge, code is an interesting vector, but it has to be verified and behind code is another code: the code needed to verify its behavior.
+In that sense, a better way to interact with and priorly understand code is to read tests.
+Good Tests, written in the TDD cycle of working, must express a clear intention (through exposing clear ARRANGE and ACT steps) and also even more clear expectation (using well expressed ASSERTIONS).
+We're talking about unit tests of course, those close to the code.
+It is the exact location where we can verify that the Ubiquituous appears in the naming of classes, properties and method.
+It is where we can judge of the quality of code, the way it has to be used;it reveals any flaws in the object design and the domain rules and their cohesion.
+
+As tests are the first real user of the code, they act a concret, verifiable interaction whith the code.
+Although those tests are code themselves, they are written by a human being.
+One can think that tests are only written by developpers, but not only.
+With the now widely use of Agile practices such as User Stories, Story Mapping, Impact Mapping, non technicians are writting acceptance test, or behavior expectations.
+Those expectations can lead directly to code through Excecutable Specification.
+They are to be written in a human readable language, such as (in English, but translatable to any dialect): Given / When / Then.
+Then we can associate (map) some code behind the natural language, through the use of Regular Expressions.
+Many test libraries allow to do that and target unit test code written in Java, C#, TypeScript, Java Script, PHP, Ruby, etc.
+The top library acheiving this is Cucumber and there are many tools and test runtimes to make it work in any CI/CD pipeline. [^1]
+
+
+Further more, when we mention unit testing, or technical tests, it expresses what developpers have understood about the domain and its subtleness.
+
+
 ### Code Reviews and metrics
+
+
 
 ### Sprint Review and metrics
 
@@ -82,11 +124,24 @@ How can we ensure that the software is working?
 ---------------
 # Third value : Customer collaboration 
 
-What are the elements that the code can provide to improve collaboration with the Customers?
+What are the elements that the code and the developement team can reveal to improve collaboration with the Customers?
 
 
+## Based on an Ubiquitous Language
 
-## Toward an Ubiquitous Language
+As mentionned in the 1st principle of collaboration over processes, people will understand each other in a better way if they speak the same language.
+More than the native tongue, it is also important to agree on the meaning behind terms and acronyms.
+In that sense, and to avoid a lot of unproductive meeetings, it is interesting to involve end users and domain experts into the process of co-creation.
+For that, they need to build a common glossary and progress on disambiguate any term or concept coming from the business/end user side.
+The aim is to discuss, research, conceptualize, develop and speak the Ubiquitous Language of the Domain Model.
+
+### Event Storming as a way to extended interaction & collaboration throughout the design phase
+
+One very efficient way is the Event Storming (or more recently moved in Event Modeling) meeting.
+It brings togethers those who have the knowledge of the business concerns, the needs of the customers, but also the imperative of regulations or law inforcements with the ones in charge of the development and the integration of the product with other systems (the technical parts). In that mutual exercise they simply discuss and share higly valuable knowledge while producing artefacts that will become the angular stone of the code.
+
+Those ertefacts are: Aggregates of information, views of the model, views of the future HMI, policies, events in a timeline, commands and systems. 
+They are not complete, just a sketch, but enough to start coding and most important an ongoing conversation between stakeholders.
 
 ## ATDD and BDD
 Another form of collaboration is to involve the End Users and the Domain Experts in the inception of verification.
@@ -117,6 +172,18 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 
 ## Nature of changes
 
+## Why code is difficult to change
+
+Explain here the connanscence problema.
+https://www.maibornwolff.de/en/blog/connascence-rules-good-software-design
+
++ illustration
+
+
+## Agile Code as a way to allow and minimize impact of change
+
+### Agile code must be SOLID
+
 ## Architectures enabling changes
 
 ## Verifications enabling changes
@@ -126,5 +193,11 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 
 
 
-## Evolutions in code
+## Evolutions in software
 When changes are evolution, how to cope with it?
+
+
+
+#References
+
+[^1]: https://cucumber.io/docs/tools/related-tools/
