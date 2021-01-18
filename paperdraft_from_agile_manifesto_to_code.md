@@ -106,6 +106,8 @@ We're not going to talk about tools. As they still are many and other studies ex
 The coders are in perpetual interaction each other when they write, read and fix code.
 Source code, as I said, is a vector.
 A vector of shared knowledge, but also intentions.
+That's why code review is an important interaction whithin the members of the team around the code.
+It's a time where people should discuss is the problem has properly been understood and if the solution is viable and 
 
 
 ### Sprint Review and metrics
