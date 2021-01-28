@@ -1,0 +1,548 @@
+\section{Abstract}\label{abstract}
+
+\section{Keywords}\label{keywords}
+
+\section{Introduction}\label{introduction}
+
+\section{Obervation: the Agile
+Manifesto}\label{obervation-the-agile-manifesto}
+
+The manifesto exposes 4 values written in the same
+form:\\\textless{}X\textgreater{} over \textless{}Y\textgreater{}\\where
+X is a value (or set of values) that comes other Y.
+
+We will focus on X and have no discussion on Y in this paper.
+
+\section{First value : Individuals and
+interactions}\label{first-value-individuals-and-interactions}
+
+In a development team, how can the code be a medium between individuals
+and ease interactions?\\In an agile perspective (or an agile ideal), the
+developement team, often mentionned as `the team', should include:
+testers, ergonomists, front end developpers, back end devs, data
+specialists, devOps engineers, technical leaders, architects and so on.
+
+The aspect of sharing informations with the end users (and customers) is
+discussed in the third value.
+
+\subsubsection{The importance of Shared Language among
+developpers}\label{the-importance-of-shared-language-among-developpers}
+
+While a lot of practices, tools, recipes exists to emphase communication
+between people in an agile IT environment, one major drawback is still
+human language.\\The need of an ubiquitous, shared langugage is
+absolutly vital between end users, business experts and people involved
+in the production of the software deliveries.\\Because what is delivered
+is what the software engineers did have understood.\\And most of all,
+what is delivered is the result of code source, being compiled and
+distributed, even on premises or on a cloud infrastructure.
+
+Classical Agile methodologies often end on the side of project
+management and requirement gathering (with the final aim of writing user
+stories). But there's a lack of considerations about the code, which
+still remains an obscure face of the long process of building software.
+
+One must look for guidelines and practices beyond the Agile Manifesto,
+hence use mostly common sense, or less known guidances such as Domain
+Driven Development, coined and developped by Eric Evans
+
+\begin{quote}
+parler du glossaire!!!!\\et au dela: desambiguation, contresens, sens
+caché, non sens
+\end{quote}
+
+Shared Language is modeled within a Limited context (so called bounded),
+where the terms and concepts of the business domain are identified, and
+there should be no ambiguity.
+
+\subsection{Interactions inside the build
+team}\label{interactions-inside-the-build-team}
+
+Individuals and interactions are of course adressed in the Third value :
+Customer collaboration.\\But what remains to explore are interactions
+whithin the development team.\\Agility comes with a lot of innovations
+in terms of having people working together more seamlessly and
+fluently.\\How can this translate when it comes to code?
+
+Code (source code) is not only what will be compiled and produces an
+executable asset;\\Code has became more and more expressive, fluent.
+Through the evolution of programing language (think about how an
+assembly code looks like, it's barely unreadable for a human being) in
+one hand, and the rise of better libraries, framework and
+practices.\\Let's dive into more details:
+
+\subsubsection{Code Readabilty}\label{code-readabilty}
+
+The ability of reading fluently a source code come from multiple
+factors:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  speak the Ubiquitous Language of the bussiness and the clients : as
+  said before it's a consequence of empowering interactions between
+  stakeholders.\\
+\item
+  follow a design/conception that is close to the business needs:
+  applying the recommandations of DDD, and name everything upon the
+  Ubiquitous Language.
+\end{itemize}
+
+\subsubsection{Test understandably is at least as important as
+code}\label{test-understandably-is-at-least-as-important-as-code}
+
+On the way to share knowledge, code is an interesting vector, but it has
+to be verified and behind code is another code: the code needed to
+verify its behavior.\\In that sense, a better way to interact with and
+priorly understand code is to read tests.\\Good Tests, written in the
+TDD cycle of working, must express a clear intention (through exposing
+clear ARRANGE and ACT steps) and also even more clear expectation (using
+well expressed ASSERTIONS).\\We're talking about unit tests of course,
+those close to the code.\\It is the exact location where we can verify
+that the Ubiquituous appears in the naming of classes, properties and
+method.\\It is where we can judge of the quality of code, the way it has
+to be used;it reveals any flaws in the object design and the domain
+rules and their cohesion.
+
+As tests act as the first real user of the code, they prove a concrete,
+verifiable interaction whith it.\\And they are error prone. Because on
+one hand they compile (static type verification), then they pass! (they
+have to).
+
+Although those tests are code themselves, they are written by a human
+being.\\One can think that tests are only written by developpers, but
+not only.\\With the now acclaimed use of Agile practices such as User
+Stories, Story Mapping {[}\^{}2{]}, Impact Mapping and so on, non
+technicians are able to write acceptance tests, or behavior
+expectations.\\Those expectations can lead directly to code through
+Excecutable Specifications.\\They are to be written in a human readable
+language, in a specific form using these keywords at the beginning of
+each sentences (in English, but translatable to any dialect): Given /
+When / Then.\\Then we associate (map) some code behind the natural
+language, through the use of Regular Expressions.\\Many test libraries
+allow to do that and target unit test code written in Java, C\#,
+TypeScript, Java Script, PHP, Ruby, etc.\\The top library acheiving this
+is Cucumber and there are many tools and test runtimes to make it work
+in any CI/CD pipeline {[}\^{}1{]}. One can also use the Fitness
+framework.
+
+The observable result is that tests are now reflecting code, or at least
+the Domain Model in the same form that it is expressed in code: events,
+aggregates, even class names or abstraction names are trully and durably
+in the code.\\And they are covariants. Always synchronised; otherwise
+the code cannot compile and the tests cannot pass.
+
+Further more, when we mention unit testing, or technical tests, it
+expresses what developpers have understood about the domain and its
+subtleness.
+
+With those processes (tests and code together written as a base to
+interact between stakeholders), we are acheiving one most precious thing
+in the art of software development: a \emph{Single Source of Trust}.
+
+And a way to talk between technicians and non technicians about the
+expected behavior of what is to be delivered.
+
+\subsubsection{Pair Programming \& Mob
+Programming}\label{pair-programming-mob-programming}
+
+\ldots{}\ldots{} . . . . . .
+
+\subsubsection{Code Repository (sharing)}\label{code-repository-sharing}
+
+l'outil de repository , et les outils de code review\\voir outil
+Themis\\\ldots{}\ldots{} . . . . . .
+
+\subsubsection{Code Reviews and metrics}\label{code-reviews-and-metrics}
+
+Individuals (the coders) havre also they own channel to discuss.\\We're
+not going to talk about tools. As they still are many and other studies
+exist to discuss their usage.
+
+The coders are in perpetual interaction each other when they write, read
+and fix code.\\Source code, as I said, is a vector.\\A vector of shared
+knowledge, but also intentions.\\That's why code review is an important
+interaction whithin the members of the team around the code.\\It's a
+time where people should discuss is the problem has properly been
+understood and if the solution is viable and
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}\\\ldots{}
+\ldots{}\ldots{}\ldots{}\ldots{}\\\ldots{}
+\ldots{}\ldots{}\ldots{}\ldots{}\\\ldots{}
+\ldots{}\ldots{}\ldots{}\ldots{}\\\ldots{}
+\ldots{}\ldots{}\ldots{}\ldots{}
+
+\subsubsection{Architecture Decision
+Records}\label{architecture-decision-records}
+
+Although we are going to discuss a form of documentation, it is
+important to remember that Architecture and code are conversations in
+first place.\\Then, those conversations needs to be recorded.
+
+\begin{quote}
+cf Quick Design Session: Xtreme Programming
+\end{quote}
+
+\begin{quote}
+caser les C4 et UML ici
+\end{quote}
+
+The Architecture Decision Records (ADR) are actually not really about
+documenting the current, or future, state of an application
+architecture, but instead the reasons that led to it. They are specially
+important because they intend to tell others, and our future selves, why
+the architecture, therefore the code, is as it is.
+
+An ADR is a log entry about the architecture decisions that have been
+made and that lead to the state of the architecture as it is now or as
+it is intended to be in the future. They contain the why behind the the
+diagrams that describe the architecture.
+
+ADR are written in a simple MarkDown (MD) language.
+
+To start, there are a few artefacts that we need to know:
+
+Architecturally-Significant Requirement (ASR): a requirement that has a
+measurable effect on a software system's architecture;\\Architecture
+Decision (AD): a software design choice that addresses a significant
+requirement;\\Architecture Decision Record (ADR): a document that
+captures an important architectural decision made along with its context
+and consequences;\\Architecture Decision Log (ADL): the collection of
+all ADRs created and maintained for a particular project (or
+organisation);\\Architecture Knowledge Management (AKM): the higher
+sphere of all previous concepts.
+
+\subsection{When Interactions falls into a trap: it's all about
+(external)
+dependencies}\label{when-interactions-falls-into-a-trap-its-all-about-external-dependencies}
+
+While we're talking about interactions, there are other that lie on the
+dark side of the projet, hidden in the cellar.\\Namely: the
+dependencies.\\While business experts talk about behavior, expectations,
+policies, rules\ldots{} engineer are still facing the technologie that
+come into pieces: programming languages, framework, libraries, external
+services, APIs, 3rd party software, external ressources, hardware
+links\ldots{}
+
+Those dependencies add complexity in the dialog between stakeholders.
+
+(to be continued ?)
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\section{Second value : Working software \& Working on
+Software}\label{second-value-working-software-working-on-software}
+
+How can we ensure that the software is working?
+
+\subsection{Define What is Working?}\label{define-what-is-working}
+
+a program that build : Product Right\\a program that fulfills the user
+needs : Right Product
+
+\begin{quote}
+Clean Code that Works (Kent Beck)
+\end{quote}
+
+\subsection{Working on Software}\label{working-on-software}
+
+\begin{quote}
+Not only working software but also well crafted software ()
+\end{quote}
+
+Code bien écrit pour bien travailler dessus\\(rejoint l'aspect
+collaboration )
+
+SOLID\\KISS\\DRY
+
+\subsection{Test pour valider ? ou test pour
+verifier?}\label{test-pour-valider-ou-test-pour-verifier}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+Tests pour refactorer
+
+\subsection{The need for automation in
+test}\label{the-need-for-automation-in-test}
+
+\ldots{} \ldots{}\ldots{}\ldots{}code = test / test = code
+\ldots{}\ldots{}
+
+\ldots{}\ldots{}\ldots{}\ldots{} spec = test / test = spec ?
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\subsubsection{The tests pyramid}\label{the-tests-pyramid}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+Conclusion: automated verification are code! They shall obey the same
+rules.
+
+\subsection{Behaviour Driven : let's start verification: executable
+specification}\label{behaviour-driven-lets-start-verification-executable-specification}
+
+\subsubsection{End 2 End tests are not Behaviour Driven or Acceptance
+Tests}\label{end-2-end-tests-are-not-behaviour-driven-or-acceptance-tests}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\section{Third value : Customer
+collaboration}\label{third-value-customer-collaboration}
+
+\begin{quote}
+Right Product
+\end{quote}
+
+What are the elements that the code and the developement team can reveal
+to improve collaboration with the Customers?
+
+\subsection{Behaviour Driven : let's start
+conversations}\label{behaviour-driven-lets-start-conversations}
+
+BDD\\ \ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\begin{quote}
+Based on an Ubiquitous Language
+\end{quote}
+
+As mentionned in the 1st principle of collaboration over processes,
+people will understand each other in a better way if they speak the same
+language.\\More than the native tongue, it is also important to agree on
+the meaning behind terms and acronyms.\\In that sense, and to avoid a
+lot of unproductive meeetings, it is interesting to involve end users
+and domain experts into the process of co-creation.\\For that, they need
+to build a common glossary and progress on disambiguate any term or
+concept coming from the business/end user side.\\The aim is to discuss,
+research, conceptualize, develop and speak the Ubiquitous Language of
+the Domain Model.
+
+\subsection{}\label{section}
+
+\subsubsection{Event Storming as a way to extended interaction \&
+collaboration throughout the design
+phase}\label{event-storming-as-a-way-to-extended-interaction-collaboration-throughout-the-design-phase}
+
+One very efficient way is the Event Storming (or more recently moved in
+Event Modeling) meeting.\\It brings togethers those who have the
+knowledge of the business concerns, the needs of the customers, but also
+the imperative of regulations or law inforcements with the ones in
+charge of the development and the integration of the product with other
+systems (the technical parts). In that mutual exercise they simply
+discuss and share higly valuable knowledge while producing artefacts
+that will become the angular stone of the code.
+
+Those ertefacts are: Aggregates of information, views of the model,
+views of the future HMI, policies, events in a timeline, commands and
+systems.\\They are not complete, just a sketch, but enough to start
+coding and most important an ongoing conversation between stakeholders.
+
+\subsection{ATDD and BDD}\label{atdd-and-bdd}
+
+Another form of collaboration is to involve the End Users and the Domain
+Experts in the inception of verification.
+
+``What comes out in production is what the developers have
+understood''\\\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\subsection{Domain Modeling}\label{domain-modeling}
+
+As seen in chapter of ``Event Storming'', what comes right next after a
+Workshop where ideas emerge, is to catpure the shared knowledge into a
+tangible and applicable model.\\On can be attached to UML modeling while
+others prefer putting it down directly to code.\\There's many tools that
+handle reverse direction mapping between code and a model like UML\\In
+fact, there's is no reason that code and model should be seperated. They
+hold the same information.\\As duplicating information is an absolute
+anti pattern, one should choose wich should master and be the reference
+for the design: either the UML representation, or the code.
+
+Benefit of the code: it is compiled easily and quickly, thus verified
+again
+
+\subsection{Tactical DDD}\label{tactical-ddd}
+
+\subsubsection{Domain Core}\label{domain-core}
+
+\subsubsection{Domain Aggregates}\label{domain-aggregates}
+
+\subsubsection{Value Objets}\label{value-objets}
+
+\subsection{Human Readable
+Verification}\label{human-readable-verification}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\section{Fourth value : Responding to
+change}\label{fourth-value-responding-to-change}
+
+How can the code help us to facilitate any responses to change?
+
+Quote: ``Make the change easy, the make the easy change'' (Kent Beck).
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\subsection{SOLID principles are
+vitals}\label{solid-principles-are-vitals}
+
+\subsubsection{allow and minimize impacts of
+change}\label{allow-and-minimize-impacts-of-change}
+
+\subsubsection{Pattern are usefull to enforce
+SOLID}\label{pattern-are-usefull-to-enforce-solid}
+
+\subsection{Feedback Loops}\label{feedback-loops}
+
+\subsubsection{Contract based testing}\label{contract-based-testing}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\subsection{Why code is difficult to
+change}\label{why-code-is-difficult-to-change}
+
+Explain here the connascence
+problema.\\\url{https://www.maibornwolff.de/en/blog/connascence-rules-good-software-design}
+
+In the common sense, connascence is the act of growing together.\\In the
+code, it is the relationship between two or more elements (packages,
+components, classes or functions) in which changing one necessitates
+changing the others in order to maintain overall correctness.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  illustration
+\end{itemize}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\subsection{Architectures enabling
+changes}\label{architectures-enabling-changes}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+Hexagonal Architecture
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\subsection{Evolutions in software}\label{evolutions-in-software}
+
+When changes are evolution, how to cope with it?\\( à voir ?????)
+
+\section{Conclusion}\label{conclusion}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\ldots{} \ldots{}\ldots{}\ldots{}\ldots{}
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\section{(à déplacer qq part)
+Motivation}\label{a-deplacer-qq-part-motivation}
+
+\subsubsection{Breaking the monolith of design \& conception
+phase}\label{breaking-the-monolith-of-design-conception-phase}
+
+Traditional software project management guidelines (Waterfall, RUP) tend
+to avoid live interactions between the various actors of a project: from
+user to late end validators and receiptors, only a heavy and cheesy
+documentation was allowed. And all things must be expressed as a whole,
+a monolith; rarely in terms of increment.\\Agile methodologies arrived
+to change this. But how the design and conception phased is durably
+impacted?
+
+While going to discover the product backlog and its refinement through
+user stories, the need of design \& conception process was still on the
+urge.
+
+While some XP (eXtreme Programming) supporters said that one has just to
+code the solution (which is quite acceptable if you have the end user or
+the skateholders fully involved in the whole construction of the
+software), the vast majority still needs to express intermediates
+between User Stories and the code.
+
+Thus, Agile practices encourage more human readable, and interactions
+prone, artefacts such as:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Express User Stories in a form using BDD / Gherkin / Cucumber\\
+\item
+  Acceptance (Tests) Driven Development\\
+\item
+  Executable Specification
+\end{itemize}
+
+But also C4 Models (to move accross high level use case, architectural
+views, and code implementations) and traditionnal UML diagramms are
+still good candidates to encourage intense discussion with the
+stakeholders and the builder of the project/product.
+
+\section{References}\label{references}

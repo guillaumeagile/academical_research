@@ -17,31 +17,13 @@ We will focus on X and have no discussion on Y in this paper.
  In a development team, how can the code be a medium between individuals and ease interactions?
 In an agile perspective (or an agile ideal), the developement team, often mentionned as 'the team', should include: testers, ergonomists, front end developpers, back end devs, data specialists, devOps engineers, technical leaders, architects and so on.
 
-The aspect of sharing informations with the end users (aka customers) is exposed in the third value.
-
-##  Interaction between the build team and the stakeholders
-Modelisation: what model is easy to share and interact with?  Which consequences for the code?
-
-### Breaking the monolith of design & conception phase
-Traditional software project management guidelines (Waterfall, RUP) tend to avoid live interactions between the various actors of a project: from user to late end validators and receiptors, only a heavy and cheesy documentation was allowed. And all things must be expressed as a whole, a monolith; rarely in terms of increment.
-Agile methodologies arrived to change this. But how the design and conception phased is durably impacted?
-
-While going to discover the product backlog and its refinement through user stories, the need of design & conception process was still on the urge.
-
-While some XP (eXtreme Programming) supporters said that one has just to code the solution (which is quite acceptable if you have the end user or the skateholders fully involved in the whole construction of the software), the vast majority still needs to express intermediates between User Stories and the code.
-
-Thus, Agile practices encourage more human readable, and interactions prone, artefacts such as:
- - Express User Stories in a form using BDD / Gherkin / Cucumber 
- - Acceptance (Tests) Driven Development
- - Executable Specification
-
-But also C4 Models (to move accross high level use case, architectural views, and code implementations) and traditionnal UML diagramms are still good candidates to encourage intense discussion with the stakeholders and the builder of the project/product.
+The aspect of sharing informations with the end users (and customers) is discussed in the third value.
 
 
-### the importance of Ubiquitous Languge
+### The importance of Shared Language among developpers
 
 While a lot of practices, tools, recipes exists to emphase communication between people in an agile IT environment, one major drawback is still human language.
-The need of an Ubiquitous, shared langugage is absolutly vital between end users, business experts and people involved in the production of the software deliveries.
+The need of an ubiquitous, shared langugage is absolutly vital between end users, business experts and people involved in the production of the software deliveries.
 Because what is delivered is what the software engineers did have understood.
 And most of all, what is delivered is the result of code source, being compiled and distributed, even on premises or on a cloud infrastructure.
 
@@ -49,7 +31,10 @@ Classical Agile methodologies often end on the side of project management and re
 
 One must look for guidelines and practices beyond the Agile Manifesto, hence use mostly common sense, or less known guidances such as Domain Driven Development, coined and developped by Eric Evans
 
-Ubiquitous Language is modeled within a Limited context (so called bounded), where the terms and concepts of the business domain are identified, and there should be no ambiguity.
+>  parler du glossaire!!!!
+et au dela:  desambiguation,  contresens, sens caché, non sens
+
+Shared Language is modeled within a Limited context (so called bounded), where the terms and concepts of the business domain are identified, and there should be no ambiguity.
 
 
 ##  Interactions inside the build team 
@@ -98,6 +83,17 @@ With those processes (tests and code together written as a base to interact betw
 
 And a way to talk between technicians and non technicians about the expected behavior of what is to be delivered.
 
+### Pair Programming & Mob Programming
+
+...... . . . . . .
+
+### Code Repository (sharing)
+
+l'outil de repository , et les outils de code review
+voir outil Themis 
+...... . . . . . .
+
+
 ### Code Reviews and metrics
 
 Individuals (the coders) havre also they own channel to discuss.
@@ -108,17 +104,23 @@ Source code, as I said, is a vector.
 A vector of shared knowledge, but also intentions.
 That's why code review is an important interaction whithin the members of the team around the code.
 It's a time where people should discuss is the problem has properly been understood and if the solution is viable and 
+
 ... ............
 ... ............
 ... ............
 ... ............
 ... ............
+
 
 
 
 ### Architecture Decision Records
 Although we are going to discuss a form of documentation, it is important to remember that Architecture and code are conversations in first place.
 Then, those conversations needs to be recorded.
+
+> cf Quick Design Session: Xtreme Programming
+
+> caser les C4 et UML ici
 
 The Architecture Decision Records (ADR) are actually not really about documenting the current, or future, state of an application architecture, but instead the reasons that led to it. They are specially important because they intend to tell others, and our future selves, why the architecture, therefore the code, is as it is.
 
@@ -135,7 +137,7 @@ Architecture Decision Log (ADL): the collection of all ADRs created and maintain
 Architecture Knowledge Management (AKM): the higher sphere of all previous concepts.
 
 
-## Interactions in code: it's all about dependencies
+## When Interactions falls into a trap: it's all about (external) dependencies
 While we're talking about interactions, there are other that lie on the dark side of the projet, hidden in the cellar.
 Namely: the dependencies.
 While business experts talk about behavior, expectations, policies, rules... engineer are still facing the technologie that come into pieces: programming languages, framework, libraries, external services, APIs, 3rd party software, external ressources, hardware links...
@@ -147,64 +149,73 @@ Those dependencies add complexity in the dialog between stakeholders.
 ---------------------
 # Second value : Working software 
 
-How can we ensure that the software is working?
+The second value is to be understood as: delevering a software that whithout bugs has higher value than (just) producing a extensive documentation of it.
 
-With tests!
+In the common sense, we could say: more code, less unused papers.
+
+With all the years and practices of developing software guided by the Manifesto, and also bearing in mind the principles of Xtreme Programming, it appears that the best documentation one can made for a software is the code itself.
+
+That momentum has been coined under the name of Living Documentation by Cyrille Martaire (ISBN-13: 978-0134689326), based on the widely used concept of "Living Documents" 
+ Shanahan, Daniel R (11 April 2015). "A living document: reincarnating the research article". Trials. 16 (1): 151. doi:10.1186/s13063-015-0666-5. PMC 4403711. PMID 25873052.
+
+A code that works has great value for the end users; rather than a code with bugs.
+A code that is tested and that easy to read and maintain has a great value for developpers.
+
+We shall define a working software as this: it shall be delivered from a code that works and that is of the greatest intrinsic quality, as defined above.
+
+
+> Clean Code that Works (Kent Beck)
+
+
+
+
+
+> Not only working software but also well crafted software ()
+
+
+## a Working Software must be written 
+
+## a Working Software must have Verifications and Validations
+
+Verification checks whether the software confirms a specification whereas Validation checks whether the software meets the requirements and expectations. 
+Verification finds the bugs early in the development cycle whereas Validation finds the bugs that verification can not catch.
+
+The most effective, error prone, robust, long lasting Verification a developper can made is when a test is written first.
+It is the principle of TDD  (refs)
+
+The consequences of praticing TDD continuously are:
+ - one line of code has at least a mandatory test that covers it
+ - one test that is written shall stay green forever when the code change (refactor) but the expected behaviour shall remain unchanged
+ - a test has to follow the single responsibility principe: one test must only verify one behavior and one unit of code at the same time. It is the principle of "Testing in isolation" (refs)
+- test must be stable, reproducible, independent running order, independant in degrees of parallelism
+- test must verify expected behaviors, not implementation details.
+
+https://www.researchgate.net/publication/236893390_Quality_of_Testing_in_Test_Driven_Development
+
+
+
+## The need for automation in test
+
+... .........code = test / test = code ...... 
+
+............  spec = test / test = spec ?
+
+... ............
+
+### The tests pyramid
 ... ............
 
 ... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-
-## Difference between V&V and tests
-
-V&V stands for  Validations and Verifications
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-
-
-## the need for automation in test
-
-... ............... 
-
-............
 
 ... ............
 
 Conclusion: automated verification are code! They shall obey the same rules.
 
-## Behaviour Driven : let's start conversations
-... ............
-
-... ............
-
-... ............
-
-... ............
 
 
+## Behaviour Driven : let's start verification: executable specification
 
-## The tests pyramid
-... ............
 
-... ............
-
-... ............
 
 
 ### End 2 End tests are not Behaviour Driven or Acceptance Tests
@@ -218,56 +229,37 @@ Conclusion: automated verification are code! They shall obey the same rules.
 
 
 
-### Unit tests 
-... ............
 
-... ............
-
-... ............
-
-... ............
-
-
-## Tests: more a human factor than you can possibly imagine
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-
-
-## On the feedback loop
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
 
 
 ---------------
 # Third value : Customer collaboration 
 
+> Right Product
+
 What are the elements that the code and the developement team can reveal to improve collaboration with the Customers?
 
 
-## Based on an Ubiquitous Language
+
+## Behaviour Driven : let's start conversations
+ BDD
+ ... ............
+
+... ............
+
+... ............
+
+... ............
+
+> Based on an Ubiquitous Language
 
 As mentionned in the 1st principle of collaboration over processes, people will understand each other in a better way if they speak the same language.
 More than the native tongue, it is also important to agree on the meaning behind terms and acronyms.
 In that sense, and to avoid a lot of unproductive meeetings, it is interesting to involve end users and domain experts into the process of co-creation.
 For that, they need to build a common glossary and progress on disambiguate any term or concept coming from the business/end user side.
 The aim is to discuss, research, conceptualize, develop and speak the Ubiquitous Language of the Domain Model.
+
+##
 
 ### Event Storming as a way to extended interaction & collaboration throughout the design phase
 
@@ -302,18 +294,21 @@ As duplicating information is an absolute anti pattern, one should choose wich s
 
 Benefit of the code: it is compiled easily and quickly, thus verified again 
 
+## Tactical DDD
+
+
+### Domain Core 
+
+### Domain Aggregates
+
+### Value Objets
+
+
 
 ## Human Readable Verification
 ... ............
 
-... ............
 
-... ............
-
-... ............
-
-
-... ............
 
 
 
@@ -326,13 +321,21 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 
 ... ............
 
-... ............
+## SOLID principles are vitals
+
+### allow and minimize impacts of change
+
+### Pattern are usefull to enforce SOLID
+
+
+## Feedback Loops
+
+### Contract based testing
 
 ... ............
 
+... ............
 
-
-## Nature of changes
 ... ............
 
 ... ............
@@ -347,46 +350,13 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 
 ## Why code is difficult to change
 
-Explain here the connanscence problema.
+Explain here the connascence problema.
 https://www.maibornwolff.de/en/blog/connascence-rules-good-software-design
 
 In the common sense, connascence is the act of growing together.
 In the code, it is the relationship between two or more elements (packages, components, classes or functions) in which changing one necessitates changing the others in order to maintain overall correctness.
 
 + illustration
-
-... ............
-
-... ............
-
-... ............
-
-
-
-## Agile Code as a way to allow and minimize impact of change
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-
-
-
-### Agile code must be SOLID
-
-... ............
-
-... ............
 
 ... ............
 
@@ -406,65 +376,7 @@ In the code, it is the relationship between two or more elements (packages, comp
 
 ... ............
 
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-
-## Verifications enabling changes
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-
-## Insurances that changes are not breaking
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-### Contract based testing
-
-... ............
-
-... ............
-
-... ............
-
-... ............
+Hexagonal Architecture
 
 ... ............
 
@@ -479,6 +391,8 @@ In the code, it is the relationship between two or more elements (packages, comp
 
 ## Evolutions in software
 When changes are evolution, how to cope with it?
+( à voir  ?????)
+
 
 # Conclusion
 
@@ -497,7 +411,30 @@ When changes are evolution, how to cope with it?
 ... ............
 
 
+
+------------------------
+#(à déplacer qq part) Motivation 
+### Breaking the monolith of design & conception phase
+Traditional software project management guidelines (Waterfall, RUP) tend to avoid live interactions between the various actors of a project: from user to late end validators and receiptors, only a heavy and cheesy documentation was allowed. And all things must be expressed as a whole, a monolith; rarely in terms of increment.
+Agile methodologies arrived to change this. But how the design and conception phased is durably impacted?
+
+While going to discover the product backlog and its refinement through user stories, the need of design & conception process was still on the urge.
+
+While some XP (eXtreme Programming) supporters said that one has just to code the solution (which is quite acceptable if you have the end user or the skateholders fully involved in the whole construction of the software), the vast majority still needs to express intermediates between User Stories and the code.
+
+Thus, Agile practices encourage more human readable, and interactions prone, artefacts such as:
+ - Express User Stories in a form using BDD / Gherkin / Cucumber 
+ - Acceptance (Tests) Driven Development
+ - Executable Specification
+
+But also C4 Models (to move accross high level use case, architectural views, and code implementations) and traditionnal UML diagramms are still good candidates to encourage intense discussion with the stakeholders and the builder of the project/product.
+
+
+
+
 #References
 
 [^1]: https://cucumber.io/docs/tools/related-tools/
 [^2]: https://www.nilslesieur.fr/2020/12/impact-mapping/
+
+

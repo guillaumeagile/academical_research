@@ -143,6 +143,8 @@ Remettre toutes les logiques dans des classes obèses, c'est mal.
 
 ![tell dont ask schema](https://martinfowler.com/bliki/images/tellDontAsk/sketch.png)
 
+J'ai d'ailleurs trouvé (après avoir écrit mon billet précdent) un [article en anglais qui dit à peu près la même chose](https://blog.codecentric.de/en/2019/10/ddd-vs-anemic-domain-models/).
+
 Toute la logique dans les objets? Non. Martin Fowler en parle un peu dans son article d'ailleurs.
 Il existe une approche qui nous invite à y réflechir en détail, elle se nomme: Domain Driven Design.
 
@@ -323,6 +325,11 @@ Comme ce modèle dérivé est compatible en type avec le modèle de base, alors 
 
 ## Que faire des stacks front end
 et de leur validation facile à coder?
+
+## Two-step validation
+Also consider two-step validation. Use field-level validation on your command Data Transfer Objects (DTOs) and domain-level validation inside your entities. You can do this by returning a result object instead of exceptions in order to make it easier to deal with the validation errors.
+
+Using field validation with data annotations, for example, you do not duplicate the validation definition. The execution, though, can be both server-side and client-side in the case of DTOs (commands and ViewModels, for instance). 
 
 
 # Un mot sur la persistance et les ORM
