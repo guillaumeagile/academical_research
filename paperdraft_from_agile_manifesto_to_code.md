@@ -31,13 +31,20 @@ Classical Agile methodologies often end on the side of project management and re
 
 One must look for guidelines and practices beyond the Agile Manifesto, hence use mostly common sense, or less known guidances such as Domain Driven Development, coined and developped by Eric Evans
 
->  parler du glossaire!!!!
-et au dela:  desambiguation,  contresens, sens caché, non sens
+One of the great advantages of the Ubiquitous Language is to bring together the domain experts, the technical team, and the others involved in the project. 
+ The Language used between individuals should never be a set of terms and technical jargons imposed by developpers;
+ on the contrary, it should be developed in agreement of the whole team. The Ubiquitous Language must be spoken at all times between the team members and expressed in the software model.
 
 Shared Language is modeled within a Limited context (so called bounded), where the terms and concepts of the business domain are identified, and there should be no ambiguity.
 
+It eliminates inaccuracies and contradictions from domain experts. And of course misunderstanding from the technical team. It shall avoid the issue of "translations", whether it could be technical translations or countries/dialects translations.
+It has a trend to evolve throughout the lifetime of the project or the product lifecycle.
 
-##  Interactions inside the build team 
+A first good practice is to create a glossary of all terms with definitions and disambiguations.
+
+This leads the technical team to write the code and its specifications with the same words, whithin the same context, always. Thus it makes the interactions inside the technical team far more easy.
+
+##  Interactions inside the technical team 
 
 Individuals and interactions are of course adressed in the Third value : Customer collaboration.
 But what remains to explore are interactions whithin the development team.
@@ -85,7 +92,23 @@ And a way to talk between technicians and non technicians about the expected beh
 
 ### Pair Programming & Mob Programming
 
-...... . . . . . .
+The agile manifesto didn't say much about how to drive interactions within the technical teams.
+However, throughout time, some practices have emerged among  agile developpers; Pair Programming and more recently Mob Programming.
+Pair programming is an Agile technique originating from Extreme programming (XP) in which two developers team together and work on one computer. The two people work together, at the same desktop and in front of only one computer to design, code and test user stories.
+It encourages the use of emergent design.
+In a pair, we have a driver and a navigator. Like in driving a rally. The driver is hands on the wheel, and in control of paying attention to the immediate task at hand. For the driver checking the map would be a distraction. That is where the navigator is needed to Keep track of goals on a larger scale, paying attention to other level of details they can help significantly in getting to better results.
+ Navigator takes care of directions and instructions, and feeding them to the driver as needed.
+ Navigator thinks and driver only type code on screen. 
+ Most important thing is that they actively talk to each other. They're having a permanent discussion.
+
+But this practice is not enough when it comes to share problems and solutions to the rest of the team.
+
+That's why Mob Programming is an interesting agile complement. 
+2014 Woody Zuill originally described Mob Programming in an Experience Report at Agile2014 [^3].
+The principle is extending the Pair Programming to the whole group of technicians, but also can open to non technician people involved in the building of the software solution.
+There is still the role of the Driver and the Navigator, but it shifts at fixed time intervalls accross the whole group. The navigator only collect the ideas of the rest of the group. The driver says nothing, just acting as mecanical type writer.
+
+
 
 ### Code Repository (sharing)
 
@@ -105,11 +128,6 @@ A vector of shared knowledge, but also intentions.
 That's why code review is an important interaction whithin the members of the team around the code.
 It's a time where people should discuss is the problem has properly been understood and if the solution is viable and 
 
-... ............
-... ............
-... ............
-... ............
-... ............
 
 
 
@@ -145,6 +163,9 @@ While business experts talk about behavior, expectations, policies, rules... eng
 Those dependencies add complexity in the dialog between stakeholders.
 
 (to be continued ?)
+
+
+
 
 ---------------------
 # Second value : Working software 
@@ -294,15 +315,6 @@ As duplicating information is an absolute anti pattern, one should choose wich s
 
 Benefit of the code: it is compiled easily and quickly, thus verified again 
 
-## Tactical DDD
-
-
-### Domain Core 
-
-### Domain Aggregates
-
-### Value Objets
-
 
 
 ## Human Readable Verification
@@ -319,7 +331,24 @@ How can the code help us to facilitate any responses to change?
 
 Quote: "Make the change easy, the make the easy change" (Kent Beck).
 
-... ............
+Responding to change is -in pratice- a technical activity.
+
+The software is the result of build and assembly pieces of code together. 
+Delivering it  as a working result is challenging. Changing it can be difficult.
+
+If the code of the software hasn't been engineered to accept changes along time, then responding to change will probably fail.
+
+## Why code is difficult to change
+
+Explain here the connascence problema.
+https://www.maibornwolff.de/en/blog/connascence-rules-good-software-design
+
+In the common sense, connascence is the act of growing together.
+In the code, it is the relationship between two or more elements (packages, components, classes or functions) in which changing one necessitates changing the others in order to maintain overall correctness.
+
++ illustration
+
+## Anticipate the possibiliy to change
 
 ## SOLID principles are vitals
 
@@ -328,7 +357,9 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 ### Pattern are usefull to enforce SOLID
 
 
-## Feedback Loops
+## Accept changes that won't break with Feedback Loops
+
+
 
 ### Contract based testing
 
@@ -348,15 +379,6 @@ Quote: "Make the change easy, the make the easy change" (Kent Beck).
 
 
 
-## Why code is difficult to change
-
-Explain here the connascence problema.
-https://www.maibornwolff.de/en/blog/connascence-rules-good-software-design
-
-In the common sense, connascence is the act of growing together.
-In the code, it is the relationship between two or more elements (packages, components, classes or functions) in which changing one necessitates changing the others in order to maintain overall correctness.
-
-+ illustration
 
 ... ............
 
@@ -436,5 +458,6 @@ But also C4 Models (to move accross high level use case, architectural views, an
 
 [^1]: https://cucumber.io/docs/tools/related-tools/
 [^2]: https://www.nilslesieur.fr/2020/12/impact-mapping/
+[^3]: https://www.agilealliance.org/glossary/mob-programming
 
 
