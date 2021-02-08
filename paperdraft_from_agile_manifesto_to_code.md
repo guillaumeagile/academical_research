@@ -4,7 +4,16 @@
 
 # Introduction
 
-# Obervation: the Agile Manifesto
+The purpose of this paper is to scan the Agile Manifesto through the lens of software developpers, the people that produce code.
+
+Code is the only tangible, executable, verifiable and valuable asset that is produced when a software is build.
+
+Whatever are the amount (and valuable) of work done by Scrum Masters, Product Owners, Release Train Engineers; the one and only asset that goes into production is what the software developpers have undestood.
+
+It is then usefull to research what are the different impacts of code source in the four first values of the Agile Manifesto.
+
+
+# Observation: the Agile Manifesto
 
 The manifesto exposes 4 values written in the same form:
 &lt;X&gt; over &lt;Y&gt;
@@ -120,16 +129,23 @@ voir outil Themis
 ### Code Reviews and metrics
 
 Individuals (the coders) havre also they own channel to discuss.
-We're not going to talk about tools. As they still are many and other studies exist to discuss their usage.
+We're not going to talk about tools. As they still are many on the market and other studies exist to discuss their usage and benefits.
 
 The coders are in perpetual interaction each other when they write, read and fix code.
-Source code, as I said, is a vector.
+Source code, as said, is a vector.
 A vector of shared knowledge, but also intentions.
-That's why code review is an important interaction whithin the members of the team around the code.
-It's a time where people should discuss is the problem has properly been understood and if the solution is viable and 
+
+That's why code reviews (CRs) is an important interaction whithin the members of the team around the code.
+It's a time where people should discuss if the problem has properly been understood and if the proposed solution is viable .
+They exchange ideas about how it is coded and can improve (refactor) for clearer reading or for revealing intentions.
+It as also very important to ensure during that phase, the future of the interactions with code, namely: maintenance.
+
+Maintenance is an expensive phase, often cause by error in programming (and so a lack of CRs, or poor CRs) or undestanding (low quality interaction with POs and PPOs, or PMs).
+
+Code review is also the time for evaluating the level of shared knowledge that comes to the engineering team.
 
 
-
+  
 
 
 ### Architecture Decision Records
@@ -155,18 +171,6 @@ Architecture Decision Log (ADL): the collection of all ADRs created and maintain
 Architecture Knowledge Management (AKM): the higher sphere of all previous concepts.
 
 
-## When Interactions falls into a trap: it's all about (external) dependencies
-While we're talking about interactions, there are other that lie on the dark side of the projet, hidden in the cellar.
-Namely: the dependencies.
-While business experts talk about behavior, expectations, policies, rules... engineer are still facing the technologie that come into pieces: programming languages, framework, libraries, external services, APIs, 3rd party software, external ressources, hardware links...
-
-Those dependencies add complexity in the dialog between stakeholders.
-
-(to be continued ?)
-
-
-
-
 ---------------------
 # Second value : Working software 
 
@@ -177,7 +181,7 @@ In the common sense, we could say: more code, less unused papers.
 With all the years and practices of developing software guided by the Manifesto, and also bearing in mind the principles of Xtreme Programming, it appears that the best documentation one can made for a software is the code itself.
 
 That momentum has been coined under the name of Living Documentation by Cyrille Martaire (ISBN-13: 978-0134689326), based on the widely used concept of "Living Documents" 
- Shanahan, Daniel R (11 April 2015). "A living document: reincarnating the research article". Trials. 16 (1): 151. doi:10.1186/s13063-015-0666-5. PMC 4403711. PMID 25873052.
+ Shanahan, Daniel R (11 April 2015). "A living document: reincarnating the research article". Trials. 16 (1): 151. doi:10.1186/s13063-015-0666-5. PMC 4403711. PMID 25873052. 
 
 A code that works has great value for the end users; rather than a code with bugs.
 A code that is tested and that easy to read and maintain has a great value for developpers.
@@ -194,7 +198,7 @@ We shall define a working software as this: it shall be delivered from a code th
 > Not only working software but also well crafted software ()
 
 
-## a Working Software must be written 
+
 
 ## a Working Software must have Verifications and Validations
 
@@ -217,37 +221,44 @@ https://www.researchgate.net/publication/236893390_Quality_of_Testing_in_Test_Dr
 
 ## The need for automation in test
 
-... .........code = test / test = code ...... 
+There are many ways to enforce verification and validation. But in a fist glance it falls into two categories: manual and automated testing.
 
-............  spec = test / test = spec ?
+We're looking at the 2nd principle of the Agile Manifesto through the lens of code.
+Verification and validation can (and should) by made by code. Hence, they are also code.
 
-... ............
+
+
 
 ### The tests pyramid
-... ............
 
-... ............
+figure  test pyrammid
 
-... ............
+
+ ## What is working ?
+
+ Software is an assembly of many pieces.
+ The difficulty is to have an efficient verification.
+The process of verification is tightly coupled to the architectural choices of the software.
+
+## Coupling and dependencies
+
+
+ ## Verifications are feedback loops
+
+
+## PKIs of verifications
+
+speed
+
+robusteness
+
+accuracy
+
+
+
+
 
 Conclusion: automated verification are code! They shall obey the same rules.
-
-
-
-## Behaviour Driven : let's start verification: executable specification
-
-
-
-
-### End 2 End tests are not Behaviour Driven or Acceptance Tests
-... ............
-
-... ............
-
-... ............
-
-... ............
-
 
 
 
@@ -262,15 +273,30 @@ What are the elements that the code and the developement team can reveal to impr
 
 
 
-## Behaviour Driven : let's start conversations
- BDD
- ... ............
 
-... ............
+## Behaviour Driven : let's start verification: executable specification
 
-... ............
+Here is the boundaries between the 2nd and the 3rd principle of the manifesto: when the working software meets the collaboration with the customer.
 
-... ............
+We already asked ourselves: what is a working software?  A software whithout bugs.
+But what are bugs? When the observable behavior is not what the customer has expected.
+
+To verify that the people who wrote code need to have a clear explanation of what is expected.
+Agile principles let emerge a various set of practices to express specification and expectation
+
+Impact Mapping
+
+EDxample Mapping
+
+Use Cases
+
+Acceptance TDD (ATDD).
+ With ATDD you write a single acceptance test, or behavioral specification depending on your preferred terminology, and then just enough production functionality/code to fulfill that test. The goal of ATDD is to specify detailed, executable requirements for the project . ATDD comes along with Behavior Driven Development (BDD).
+
+Behavior Driven Development (BDD).
+
+
+
 
 > Based on an Ubiquitous Language
 
@@ -280,29 +306,16 @@ In that sense, and to avoid a lot of unproductive meeetings, it is interesting t
 For that, they need to build a common glossary and progress on disambiguate any term or concept coming from the business/end user side.
 The aim is to discuss, research, conceptualize, develop and speak the Ubiquitous Language of the Domain Model.
 
-##
+
 
 ### Event Storming as a way to extended interaction & collaboration throughout the design phase
 
 One very efficient way is the Event Storming (or more recently moved in Event Modeling) meeting.
 It brings togethers those who have the knowledge of the business concerns, the needs of the customers, but also the imperative of regulations or law inforcements with the ones in charge of the development and the integration of the product with other systems (the technical parts). In that mutual exercise they simply discuss and share higly valuable knowledge while producing artefacts that will become the angular stone of the code.
 
-Those ertefacts are: Aggregates of information, views of the model, views of the future HMI, policies, events in a timeline, commands and systems. 
+Those artefacts are: Aggregates of information, views of the model, views of the future HMI, policies, events in a timeline, commands and systems. 
 They are not complete, just a sketch, but enough to start coding and most important an ongoing conversation between stakeholders.
 
-## ATDD and BDD
-Another form of collaboration is to involve the End Users and the Domain Experts in the inception of verification.
-
-"What comes out in production is what the developers have understood"
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
 
 
 ## Domain Modeling
@@ -317,10 +330,6 @@ Benefit of the code: it is compiled easily and quickly, thus verified again
 
 
 
-## Human Readable Verification
-... ............
-
-
 
 
 
@@ -329,7 +338,7 @@ Benefit of the code: it is compiled easily and quickly, thus verified again
 
 How can the code help us to facilitate any responses to change?
 
-Quote: "Make the change easy, the make the easy change" (Kent Beck).
+>  "Make the change easy, the make the easy change" (Kent Beck).
 
 Responding to change is -in pratice- a technical activity.
 
@@ -348,9 +357,11 @@ In the code, it is the relationship between two or more elements (packages, comp
 
 + illustration
 
-## Anticipate the possibiliy to change
+
 
 ## SOLID principles are vitals
+
+Open Close principle is the main element a coder should think of when he/she wants to respond to a need for change.
 
 ### allow and minimize impacts of change
 
@@ -359,36 +370,17 @@ In the code, it is the relationship between two or more elements (packages, comp
 
 ## Accept changes that won't break with Feedback Loops
 
+TDD is the key for safe refactoring but also safely change or evolve the behavior of the software.
 
 
-### Contract based testing
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
+### Decoupling for easing the change
 
 
 
 
-... ............
+### Evolutions and versionning
 
-... ............
 
-... ............
-
-... ............
-
-... ............
 
 
 
@@ -410,10 +402,6 @@ Hexagonal Architecture
 
 
 
-
-## Evolutions in software
-When changes are evolution, how to cope with it?
-( à voir  ?????)
 
 
 # Conclusion
