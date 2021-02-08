@@ -4,7 +4,21 @@
 
 # Introduction
 
+
 The purpose of this paper is to scan the Agile Manifesto through the lens of software developpers, the people that produce code.
+
+As a reminder, these four values of the Manifesto are:
+
+1.     Individuals and interactions over processes and tools
+2.     Working software over comprehensive documentation
+3.     Customer collaboration over contract negotiation
+4.     Responding to change over following a plan 
+
+We will focus on X and any discussion on Y are out of the scope in this paper.
+We did not work on agile principles. Even if some of the twelve principles can be considered as refinements of agile values, others are just consequences of scrupulous application of a value, and the remaining are expected benefits on the functioning of the team (collaborations runned, transparency builded, and motivation improved). 
+
+What are the best practices promoted by agile methods to help the team to efficiency work with these four values? How recognize that these values have applied considering the final product: software and code. In this work, we try to respond to these two questions.
+
 
 Code is the only tangible, executable, verifiable and valuable asset that is produced when a software is build.
 
@@ -13,13 +27,6 @@ Whatever are the amount (and valuable) of work done by Scrum Masters, Product Ow
 It is then usefull to research what are the different impacts of code source in the four first values of the Agile Manifesto.
 
 
-# Observation: the Agile Manifesto
-
-The manifesto exposes 4 values written in the same form:
-&lt;X&gt; over &lt;Y&gt;
-where X is a value (or set of values) that comes other Y.
-
-We will focus on X and have no discussion on Y in this paper. 
 
 # First value : Individuals and interactions
 
@@ -136,6 +143,7 @@ Source code, as said, is a vector.
 A vector of shared knowledge, but also intentions.
 
 That's why code reviews (CRs) is an important interaction whithin the members of the team around the code.
+
 It's a time where people should discuss if the problem has properly been understood and if the proposed solution is viable .
 They exchange ideas about how it is coded and can improve (refactor) for clearer reading or for revealing intentions.
 It as also very important to ensure during that phase, the future of the interactions with code, namely: maintenance.
@@ -144,8 +152,10 @@ Maintenance is an expensive phase, often cause by error in programming (and so a
 
 Code review is also the time for evaluating the level of shared knowledge that comes to the engineering team.
 
+{trouver des papiers sur les codes reviews}
+https://queue-it.com/blog/agile-code-review-best-practices/
+  https://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670
 
-  
 
 
 ### Architecture Decision Records
@@ -227,26 +237,20 @@ We're looking at the 2nd principle of the Agile Manifesto through the lens of co
 Verification and validation can (and should) by made by code. Hence, they are also code.
 
 
-
-
-### The tests pyramid
-
-figure  test pyrammid
-
-
  ## What is working ?
 
  Software is an assembly of many pieces.
  The difficulty is to have an efficient verification.
 The process of verification is tightly coupled to the architectural choices of the software.
 
-## Coupling and dependencies
+## Coupling and dependencies : how to verify it is working
+
 
 
  ## Verifications are feedback loops
 
 
-## PKIs of verifications
+## Heuristic for verifications
 
 speed
 
@@ -286,7 +290,8 @@ Agile principles let emerge a various set of practices to express specification 
 
 Impact Mapping
 
-EDxample Mapping
+
+Example Mapping
 
 Use Cases
 
@@ -294,8 +299,6 @@ Acceptance TDD (ATDD).
  With ATDD you write a single acceptance test, or behavioral specification depending on your preferred terminology, and then just enough production functionality/code to fulfill that test. The goal of ATDD is to specify detailed, executable requirements for the project . ATDD comes along with Behavior Driven Development (BDD).
 
 Behavior Driven Development (BDD).
-
-
 
 
 > Based on an Ubiquitous Language
@@ -306,6 +309,7 @@ In that sense, and to avoid a lot of unproductive meeetings, it is interesting t
 For that, they need to build a common glossary and progress on disambiguate any term or concept coming from the business/end user side.
 The aim is to discuss, research, conceptualize, develop and speak the Ubiquitous Language of the Domain Model.
 
+> Fowler
 
 
 ### Event Storming as a way to extended interaction & collaboration throughout the design phase
@@ -329,7 +333,7 @@ As duplicating information is an absolute anti pattern, one should choose wich s
 Benefit of the code: it is compiled easily and quickly, thus verified again 
 
 
-
+##  Partial Conclusion:  DDD is a valuable approach 
 
 
 
@@ -358,14 +362,17 @@ In the code, it is the relationship between two or more elements (packages, comp
 + illustration
 
 
+### Mutations, side effects and stateness make changes complicated
 
-## SOLID principles are vitals
+
+## SOLID heuristics are vitals
 
 Open Close principle is the main element a coder should think of when he/she wants to respond to a need for change.
 
-### allow and minimize impacts of change
 
 ### Pattern are usefull to enforce SOLID
+
+
 
 
 ## Accept changes that won't break with Feedback Loops
@@ -378,47 +385,26 @@ TDD is the key for safe refactoring but also safely change or evolve the behavio
 
 
 
-### Evolutions and versionning
-
-
-
-
-
-
 ## Architectures enabling changes
-... ............
-
-... ............
-
-Hexagonal Architecture
-
-... ............
-
-... ............
-
-... ............
-
-... ............
 
 
+
+### N-tiers
+
+### Hexagonal / Onion Architecture
+
+### CQRS
+    
+    pro / cons
+
+
+
+## (??) a side note : on fucnctionnal programming and proof based languages
 
 
 
 # Conclusion
 
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
-
-... ............
 
 
 
